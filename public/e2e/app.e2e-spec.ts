@@ -1,10 +1,10 @@
-import { DojofoodPage } from './app.po';
+import { PublicPage } from './app.po';
 
-describe('dojofood App', () => {
-  let page: DojofoodPage;
+describe('public App', () => {
+  let page: PublicPage;
 
   beforeEach(() => {
-    page = new DojofoodPage();
+    page = new PublicPage();
   });
 
   it('should display welcome message', () => {

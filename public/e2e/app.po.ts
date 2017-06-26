@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class DojofoodPage {
+export class PublicPage {
   navigateTo() {
     return browser.get('/');
   }
