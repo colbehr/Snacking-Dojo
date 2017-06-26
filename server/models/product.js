@@ -5,7 +5,7 @@ let ProductSchema = mongoose.Schema({
     type: String, 
     required: [true, "Product Name is required"],
   },
-  img_url: {
+  img: {
     type: String,
   },
   votes:{
