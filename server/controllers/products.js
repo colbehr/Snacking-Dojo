@@ -1,7 +1,7 @@
 let mongoose = require('mongoose')
 let Product = mongoose.model("Product")
 module.exports = {
-  getALl: (request, response)=>{
+  getAll: (request, response)=>{
     Product.find({}).exec((error, products)=>{
       if(error){
         console.log(error)
