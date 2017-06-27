@@ -6,6 +6,9 @@ export class DatabaseService {
 
   constructor(private _http: Http) { }
   //users
+  checkStatus(){
+    return this._http.get("/users/checkstatus").map(data=>data.json()).toPromise()
+  }
   createUser(user){
     return this._http.post("/users/create", user).map(data=>data.json()).toPromise()
   }
@@ -28,5 +31,7 @@ export class DatabaseService {
     return this._http.get("/products").map(data=>data.json()).toPromise()
   }
 
+  //github
+ 
 
 }

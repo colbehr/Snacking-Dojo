@@ -11,7 +11,7 @@ module.exports = {
     //user sends post request with user/product _id in body, and maybe like/dislike boolean?
     //{user_id: "lakf32f3l3ktt43", product_id: "lf23f23424f", value: "0"}
     //check like value, toggle it or remove it or add it
-    User.findOne({_id: request.body.user_id}).exec((error, user)=>{
+    User.findOne({github_id: request.body.user_id}).exec((error, user)=>{
       if(error){
         console.log(error)
         response.status(500).json(false)
@@ -85,7 +85,7 @@ module.exports = {
           }
           console.log("product not found, adding it")
 
-          User.findByIdAndUpdate(user._id ,{$push: {likes: {product_id: request.body.product_id, value: userLikeBool}}}, (err, result)=>{
+          User.findOneAndUpdate({github_id: request.body.github_id},{$push: {likes: {product_id: request.body.product_id, value: userLikeBool}}}, (err, result)=>{
             console.log("inside callback")
             if(err){console.log(err); response.status(500).json(false)}else{
               console.log("inside else"); 
@@ -117,33 +117,42 @@ module.exports = {
     })
   },
   create: (request, response)=>{
-    User.findOne({email: request.body.email.toLowerCase()}, (error, user)=>{
+    User.findOne({github_id: request.body.github_id}, (error, user)=>{
       if(error){
         console.log("error finding user  create: users.js")
         response.status(500).json(false)
       }else{
         if(user){
-          request.session.user_id = user._id
+
           response.json(user)
         }else{
           //user not in db, create user
           let newUser = new User(request.body)
-          newUser.email = newUser.email.toLowerCase()
-          newUser.save().then(()=>{request.session.user_id = newUser._id;response.json(newUser)}).catch(()=>{console.log("catch in create user users.js")
-          response.status(500).json(false)
+          
+          newUser.save().then(()=>{response.json(newUser)}).catch(()=>{console.log("catch in create user users.js")
+          response.status(500).json("user failed to save")
           })
         }
       }
     })
   },
   getOne: (request, response)=>{
-    User.findById(request.params.id, (err, user)=>{
+    User.findOne({github_id: request.params.id}, (err, user)=>{
       if(err){
         response.status(500).json(false)
       }else{
         response.json(user)
       }
     })
+  },
+  checkStatus: (request, response)=>{
+
+    if(request.user){
+      console.log(request.user)
+      response.json(request.user)
+    }else{
+      response.status(401).json(false)
+    }
   }
 
 

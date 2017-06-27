@@ -3,7 +3,17 @@ let mongoose = require('mongoose')
 let UserSchema = mongoose.Schema({
   email: {
     type: String,
+
+  },
+  github_id: {
+    type: String,
     required: true
+
+
+  },
+  username: {
+    type: String,
+
   },
   name: {
     type: String
