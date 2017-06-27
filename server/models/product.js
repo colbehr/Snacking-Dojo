@@ -13,4 +13,5 @@ let ProductSchema = mongoose.Schema({
     default: 0
   },
 
-})
+}, {timestamps: true})
+mongoose.model("Product", ProductSchema)

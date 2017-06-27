@@ -5,6 +5,19 @@ let UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  likes: {}
-  //need to add likes/dislikes and github stuff
+  name: {
+    type: String
+  },
+  img: {
+    type: String
+  },
+  token: {
+    type: String
+  }
+  ,
+  likes: [{product_id: {type: mongoose.Schema.Types.ObjectId, ref: "Product"}, value: Boolean}] 
+    
+
 }, {timestamps: true})
+
+mongoose.model("User", UserSchema)

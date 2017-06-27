@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, './public/dist')))
 app.use(session({
-  secret: 'secret',
+  secret: 'secre123t',
   resave: false,
   saveUninitialized: true
 }))
