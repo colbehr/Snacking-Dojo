@@ -11,6 +11,14 @@ export class SnackingdojoComponent implements OnInit {
   constructor(private _dbService: DatabaseService) { }
 
   ngOnInit() {
+    this.updateProducts()
   }
-
+  vote(data){
+    this._dbService.likeProduct(data).then(()=>{this.updateProducts()})
+  }
+  updateProducts(){
+    this._dbService.getAllProducts().then((products)=>{
+      this.productList = products
+    })
+  }
 }
