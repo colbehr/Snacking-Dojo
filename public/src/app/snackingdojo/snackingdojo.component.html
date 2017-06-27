@@ -2,13 +2,20 @@
   <h2>Welcome</h2>
 </div>
 <div id="foodwrapper">
-  <div class="card make-it-slow">
-      <img class="card__image" src="https://d2d8wwwkmhfcva.cloudfront.net/250x/filters:fill(FFF,true):format(jpg)/d2lnr5mha7bycj.cloudfront.net/product-image/file/large_505e824c-32cd-41e5-96af-ce5ac393d37b.jpg" alt="">
-    <div class="card__actions">
-      <button class="uvote" type="">Up Vote</button>
-      <button class="dvote" type="">Down Vote</button>
-    </div>
+  <div class="card make-it-slow" *ngFor = "let item of items">
+      <img class="card__image" src="{{item.img}}" alt="">
     <div class="card__description">
-     <p>Kirkland Signature Dry Roasted Macadamias with Sea Salt</p>
+     <p>{{item.name}}</p>
+    </div>
+    <div class="card__actions card-social">
+      <ul>
+        <li><a href="#"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+        </li>
+        <li class="points">50</li>
+        <li><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+      <!--<button class="uvote" type="">Up Vote</button>
+      <button class="dvote" type="">Down Vote</button>-->
     </div>
 </div>
