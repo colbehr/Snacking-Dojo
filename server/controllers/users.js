@@ -1,7 +1,11 @@
 let mongoose = require('mongoose')
 let User = mongoose.model("User")
+let Product = mongoose.model("Product")
 
 module.exports = {
+  logout: (request, response)=>{
+    //add logout
+  },
   like: (request, response)=>{
     //user sends post request with user/product _id in body, and maybe like/dislike boolean?
     //{user_id: "lakf32f3l3ktt43", product_id: "lf23f23424f", value: "0"}
@@ -39,7 +43,15 @@ module.exports = {
 
 
             }
-            user.save().then((result)=>{response.json(result)}).catch((err)=>{console.log(err); response.status(500).json(err)})
+
+            user.save().then((result)=>{
+              // Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: Number(request.body.value)}},(err, res)=>{
+              //   if(err){
+              //     console.log(err)
+              //   }
+              // })
+              response.json(result)
+            }).catch((err)=>{console.log(err); response.status(500).json(err)})
           }
         })}
         //after for loop
