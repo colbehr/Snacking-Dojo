@@ -15,7 +15,7 @@ let UserSchema = mongoose.Schema({
     type: String
   }
   ,
-  likes: [{product: {type: mongoose.Schema.Types.ObjectId, ref: "Product"}, value: Boolean}] 
+  likes: [{product_id: {type: mongoose.Schema.Types.ObjectId, ref: "Product"}, value: Boolean}] 
     
 
 }, {timestamps: true})
