@@ -18,7 +18,9 @@
   margin: 60px 5px 5px 50px;
   padding: 12px;
 }
-
+.up-voted{
+  background-color: red;
+}
 .card {
   display: -webkit-box;
   display: -ms-flexbox;

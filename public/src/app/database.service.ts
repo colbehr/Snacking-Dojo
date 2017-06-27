@@ -9,6 +9,9 @@ export class DatabaseService {
   createUser(user){
     return this._http.post("/users/create", user).map(data=>data.json()).toPromise()
   }
+  getOneUser(user_id){
+    return this._http.get("/users/"+user_id).map(data=>data.json()).toPromise()
+  }
   getAllUsers(){
     return this._http.get('/users').map(data=>data.json()).toPromise()
   }

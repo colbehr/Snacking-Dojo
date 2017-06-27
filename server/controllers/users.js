@@ -4,7 +4,8 @@ let Product = mongoose.model("Product")
 
 module.exports = {
   logout: (request, response)=>{
-    //add logout
+    request.session.destroy()
+    response.redirect("/")
   },
   like: (request, response)=>{
     //user sends post request with user/product _id in body, and maybe like/dislike boolean?
@@ -132,6 +133,15 @@ module.exports = {
           response.status(500).json(false)
           })
         }
+      }
+    })
+  },
+  getOne: (request, response)=>{
+    User.findById(request.params.id, (err, user)=>{
+      if(err){
+        response.status(500).json(false)
+      }else{
+        response.json(user)
       }
     })
   }

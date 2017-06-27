@@ -1,17 +1,17 @@
 <div>
-  <h2>Welcome</h2>
+  <h2>Welcome {{user.name}}</h2>
 </div>
 <div id="foodwrapper">
   <div class="card make-it-slow" *ngFor = "let item of productList">
       <img class="card__image" src="{{item.img}}" alt="">
-    <div class="card__description">
-     <p>{{item.name}}</p>
+    <div class="card__description" >
+     <p >{{item.name}}</p>
     </div>
     <div class="card__actions card-social">
       <ul>
-        <li><a (click)="vote({product_id: item._id, user_id: '59526e587339d656a96aad22', value: 1})"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+        <li><a  (click)="vote({product_id: item._id, user_id: '59526e587339d656a96aad22', value: 1})"><i  class="fa fa-angle-up" aria-hidden="true"></i></a>
         </li>
-        <li class="points">{{item.votes}}</li>
+        <li class="points" >{{item.votes}}</li>
         <li><a (click)="vote({product_id: item._id, user_id: '59526e587339d656a96aad22', value: 0})"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
         </li>
       </ul>
