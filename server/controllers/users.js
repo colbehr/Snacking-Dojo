@@ -20,6 +20,7 @@ module.exports = {
           console.log("found user: ", user)
           let found = false
           let incVal = 0
+          let userLikeBool = false
         //check if product is in "likes" array
 
         if(user.likes){user.likes.forEach((like, index)=>{
@@ -29,7 +30,8 @@ module.exports = {
             found = true
             console.log("like.value, request.body.value",typeof(like.value), typeof(request.body.value))
             if(like.value == Number(request.body.value)){
-              console.log("like.value == body.value")
+              console.log("inside if(like.value == number(request.body.value)")
+              console.log("like.value, request.body.value = ", like.value, Number(request.body.value))
               //user is undoing a like/dislike
               user.likes.splice(index, 1)
               if(Number(request.body.value)){
@@ -48,19 +50,24 @@ module.exports = {
               like.value = !like.value
               console.log("like.value", like.value)
               if(Number(request.body.value)){
-                incVal = -2
-              }else{
+                console.log("incrementing 2, body.value ==", Number(request.body.value))
                 incVal = 2
+              }else{
+                incVal = -2
               }
 
             }
 
-            user.save().then((result)=>{
-              // Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}},(err, res)=>{
-              //   if(err){
-              //     console.log(err)
-              //   }
-              // })
+            userSave.save().then((result)=>{
+              Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}},(err, res)=>{
+                if(err){
+                  console.log(err)
+                }else{
+                  console.log("updating product by inc = ", incVal)
+                  
+
+                }
+              })
               response.json(result)
             }).catch((err)=>{console.log(err); response.status(500).json(err)})
           }
@@ -70,19 +77,26 @@ module.exports = {
           //user hasn't liked/disliked product, add it
           if(Number(request.body.value)){
             incVal = 1
+            userLikeBool = true
           }else{
             incVal = -1
+            userLikeBool = false
           }
           console.log("product not found, adding it")
-          User.findByIdAndUpdate(user._id ,{$push: {likes: {product_id: request.body.product_id, value: request.body.value}}}, (err, result)=>{
+
+          User.findByIdAndUpdate(user._id ,{$push: {likes: {product_id: request.body.product_id, value: userLikeBool}}}, (err, result)=>{
             console.log("inside callback")
             if(err){console.log(err); response.status(500).json(false)}else{
               console.log("inside else"); 
-              // Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: Number(request.body.value)}},(err, res)=>{
-              //   if(err){
-              //     console.log(err)
-              //   }
-              // })
+              Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}},(err, res)=>{
+                if(err){
+                  console.log(err)
+                }else{
+                  console.log("updating product by inc = ", incVal)
+                  
+
+                }
+              })
               response.json(result)
             }
           })

@@ -8,13 +8,17 @@ import { DatabaseService } from "./../database.service"
 })
 export class SnackingdojoComponent implements OnInit {
   productList = []
+
   constructor(private _dbService: DatabaseService) { }
 
   ngOnInit() {
     this.updateProducts()
+
   }
   vote(data){
-    this._dbService.likeProduct(data).then(()=>{this.updateProducts()})
+    this._dbService.likeProduct(data).then(()=>{this.updateProducts()}).catch((err)=>{
+      console.log(err)
+    })
   }
   updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
