@@ -25,7 +25,9 @@ export class SnackingdojoComponent implements OnInit {
     })
   }
   updateUser(){
-    this._dbService.getOneUser("59526e587339d656a96aad22").then((user)=>{
+    this.productsUserDislikes = []
+    this.productsUserLikes = []
+    this._dbService.getOneUser("59526e687339d656a96aad23").then((user)=>{
       this.user = user
       console.log(user)
       user.likes.forEach((like)=>{

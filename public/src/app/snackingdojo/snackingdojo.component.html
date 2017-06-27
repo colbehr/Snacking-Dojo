@@ -9,10 +9,10 @@
     </div>
     <div class="card__actions card-social">
       <ul>
-        <li><a  (click)="vote({product_id: item._id, user_id: '59526e587339d656a96aad22', value: 1})"><i  class="fa fa-angle-up" aria-hidden="true"></i></a>
+        <li><a  (click)="vote({product_id: item._id, user_id: '59526e687339d656a96aad23', value: 1})"><i  [ngClass]="{'down-voted': productsUserLikes.includes(item._id)}" class="fa fa-angle-up" aria-hidden="true"></i></a>
         </li>
         <li class="points" >{{item.votes}}</li>
-        <li><a (click)="vote({product_id: item._id, user_id: '59526e587339d656a96aad22', value: 0})"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+        <li><a (click)="vote({product_id: item._id, user_id: '59526e687339d656a96aad23', value: 0})"><i [ngClass]="{'up-voted': productsUserDislikes.includes(item._id)}" class="fa fa-angle-down" aria-hidden="true"></i></a>
         </li>
       </ul>
       <!--<button class="uvote" type="">Up Vote</button>

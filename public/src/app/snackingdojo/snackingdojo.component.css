@@ -19,7 +19,10 @@
   padding: 12px;
 }
 .up-voted{
-  background-color: red;
+  color: red;
+}
+.down-voted{
+  color: green;
 }
 .card {
   display: -webkit-box;
