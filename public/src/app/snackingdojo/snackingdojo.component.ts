@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from "./../database.service"
 
 @Component({
   selector: 'app-snackingdojo',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./snackingdojo.component.css']
 })
 export class SnackingdojoComponent implements OnInit {
-
-  constructor() { }
+  productList = []
+  constructor(private _dbService: DatabaseService) { }
 
   ngOnInit() {
   }
