@@ -3,94 +3,92 @@ let User = mongoose.model("User")
 let Product = mongoose.model("Product")
 
 module.exports = {
-  logout: (request, response)=>{
-    //add logout
-  },
+  
   like: (request, response)=>{
-    //user sends post request with user/product _id in body, and maybe like/dislike boolean?
-    //{user_id: "lakf32f3l3ktt43", product_id: "lf23f23424f", value: "0"}
-    //check like value, toggle it or remove it or add it
-    User.findOne({_id: request.body.user_id}).exec((error, user)=>{
-      if(error){
-        console.log(error)
-        response.status(500).json(false)
+    User.findOne({github_id: request.body.github_id}, (err, user)=>{
+      if(err){
+        console.log("err in like users.js", err)
+        response.status(500).json("error finding user")
       }else{
         if(user){
-          let userSave = user
-          console.log("found user: ", user)
           let found = false
           let incVal = 0
-        //check if product is in "likes" array
+          let userLikeBool = false
+          if(user.likes){
+            user.likes.forEach((like, index)=>{
+              if(like.product_id == request.body.product_id){
+                console.log("found product in user likes")
+                found = true
+                if(Number(request.body.value)== like.value){
+                  console.log("user.likes.....")
+                  console.log(user.likes)
+                  user.likes.splice(index, 1)
 
-        if(user.likes){user.likes.forEach((like, index)=>{
-          if(like.product_id == request.body.product_id){
-            //user has liked/disliked product
-            console.log("found product in likes")
-            found = true
-            console.log("like.value, request.body.value",typeof(like.value), typeof(request.body.value))
-            if(like.value == Number(request.body.value)){
-              console.log("like.value == body.value")
-              //user is undoing a like/dislike
-              user.likes.splice(index, 1)
+                  if(Number(request.body.value)){
+                    incVal = -1
+                  }else{
+                    incVal = 1
+                  }
+                }else{
+                  //toggling value
+                  like.value = !like.value
+
+                  if(Number(request.body.value)){
+                    incVal = 2
+                  }else{
+                    incVal = -2
+                  }
+                }
+                user.save().then((result)=>{
+                Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}}, (err, res)=>{
+                if(err){
+                  console.log("error saving", err)
+                }else{
+                  console.log(res)
+              }
+            })
+            response.json(result)
+          }).catch((errr)=>{console.log(errr); response.status(500).json("idk...")})
+
+              }
+            })
+            //after for loop
+            if(!found){
               if(Number(request.body.value)){
-                incVal = -1
-              }else{
                 incVal = 1
-              }
-              
-              
-              
-            }else{
-              console.log("toggling value")
-              //user is toggling value
-              console.log("like.value=", like.value)
-              console.log("!like.value = ", !like.value)
-              like.value = !like.value
-              console.log("like.value", like.value)
-              if(Number(request.body.value)){
-                incVal = -2
+                userLikeBool = true
               }else{
-                incVal = 2
+                incVal = -1
+                userLikeBool = false
               }
+              User.findOneAndUpdate({github_id: request.body.github_id}, {$push: {likes: {product_id: request.body.product_id, value: userLikeBool}}}, (err, user)=>{
+                if(err){console.log(err); response.status(500).json(err)}else{
+                  Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}}, (err, res)=>{
+                    if(err){
+                      console.log(err)
+                    }else{
+                      
+                    }
+                  })
+
+                }
+                response.json(user)
+              })
 
             }
 
-            user.save().then((result)=>{
-              // Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}},(err, res)=>{
-              //   if(err){
-              //     console.log(err)
-              //   }
-              // })
-              response.json(result)
-            }).catch((err)=>{console.log(err); response.status(500).json(err)})
           }
-        })}
-        //after for loop
-        if(!found){
-          //user hasn't liked/disliked product, add it
-          if(Number(request.body.value)){
-            incVal = 1
-          }else{
-            incVal = -1
-          }
-          console.log("product not found, adding it")
-          User.findByIdAndUpdate(user._id ,{$push: {likes: {product_id: request.body.product_id, value: request.body.value}}}, (err, result)=>{
-            console.log("inside callback")
-            if(err){console.log(err); response.status(500).json(false)}else{
-              console.log("inside else"); 
-              // Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: Number(request.body.value)}},(err, res)=>{
-              //   if(err){
-              //     console.log(err)
-              //   }
-              // })
-              response.json(result)
-            }
-          })
+          
 
-        }}else{console.log("didn't find user"); response.status(500).json(false)}
+        }else{
+          console.log("no user!")
+          response.status(500).json("no user....")
+        }
       }
     })
+    
   },
+  
   getAll: (request, response)=>{
     User.find({}).exec((error, users)=>{
       if(error){
@@ -102,24 +100,42 @@ module.exports = {
     })
   },
   create: (request, response)=>{
-    User.findOne({email: request.body.email.toLowerCase()}, (error, user)=>{
+    User.findOne({github_id: request.body.github_id}, (error, user)=>{
       if(error){
         console.log("error finding user  create: users.js")
         response.status(500).json(false)
       }else{
         if(user){
-          request.session.user_id = user._id
+
           response.json(user)
         }else{
           //user not in db, create user
           let newUser = new User(request.body)
-          newUser.email = newUser.email.toLowerCase()
-          newUser.save().then(()=>{request.session.user_id = newUser._id;response.json(newUser)}).catch(()=>{console.log("catch in create user users.js")
-          response.status(500).json(false)
+          
+          newUser.save().then(()=>{response.json(newUser)}).catch(()=>{console.log("catch in create user users.js")
+          response.status(500).json("user failed to save")
           })
         }
       }
     })
+  },
+  getOne: (request, response)=>{
+    User.findOne({github_id: request.params.id}, (err, user)=>{
+      if(err){
+        response.status(500).json(false)
+      }else{
+        response.json(user)
+      }
+    })
+  },
+  checkStatus: (request, response)=>{
+
+    if(request.isAuthenticated()){
+
+      response.json(request.user)
+    }else{
+      response.status(401).json("not authenticated")
+    }
   }
 
 

@@ -1,18 +1,24 @@
-<div>
-  <h2>Welcome</h2>
+<div *ngIf = "user">
+  <h2 style="display: inline-block">Welcome {{user?.username}}</h2><a href="/logout"><button>Logout</button></a> <img *ngIf="user.img" src="{{user.img}}" style="width: 100px; float: right">
+</div>
+<div *ngIf="!user">
+  <h2 style="display: inline-block">Login to vote</h2><a href="/auth/github"><button>Login</button></a>
+</div>
+<div class="searchbar">
+<p>Search : <input type="text" name="search" value="" [(ngModel)]="search"></p>
 </div>
 <div id="foodwrapper">
-  <div class="card make-it-slow" *ngFor = "let item of items">
+  <div class="card make-it-slow" *ngFor = "let item of productList | search: search">
       <img class="card__image" src="{{item.img}}" alt="">
-    <div class="card__description">
-     <p>{{item.name}}</p>
+    <div class="card__description" >
+     <p >{{item.name}}</p>
     </div>
     <div class="card__actions card-social">
       <ul>
-        <li><a href="#"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+        <li><a  (click)="vote({product_id: item._id, value: 1})"><i  [ngClass]="{'down-voted': productsUserLikes.includes(item._id)}" class="fa fa-angle-up" aria-hidden="true"></i></a>
         </li>
-        <li class="points">50</li>
-        <li><a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+        <li class="points" >{{item.votes}}</li>
+        <li><a (click)="vote({product_id: item._id, value: 0})"><i [ngClass]="{'up-voted': productsUserDislikes.includes(item._id)}" class="fa fa-angle-down" aria-hidden="true"></i></a>
         </li>
       </ul>
       <!--<button class="uvote" type="">Up Vote</button>

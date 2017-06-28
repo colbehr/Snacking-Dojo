@@ -2,11 +2,17 @@ let mongoose = require('mongoose')
 let users = require("./../controllers/users")
 let products = require("./../controllers/products")
 let path = require("path")
+let passport = require("passport")
+let GitHubStrategy = require("passport-github2").Strategy
 module.exports = (app)=>{
   //users
   app.post("/users/create", users.create)
   app.post("/users/like", users.like)
+  app.get("/users/checkstatus", users.checkStatus)
+  app.get("/users/:id", users.getOne)
   app.get("/users", users.getAll)
+  
+  
 
   //products
   app.post("/products/create", products.create)

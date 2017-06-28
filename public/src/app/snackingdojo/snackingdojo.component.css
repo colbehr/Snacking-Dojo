@@ -1,3 +1,9 @@
+*{
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */   
+}
 #foodwrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12,7 +18,12 @@
   margin: 60px 5px 5px 50px;
   padding: 12px;
 }
-
+.up-voted{
+  color: red;
+}
+.down-voted{
+  color: green;
+}
 .card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -85,6 +96,7 @@ button {
     text-align: center;
     font-size: 10px;
     height: 65px;
+    width: 100%;
     font-family: Arial, Helvetica, sans-serif; 
 }
 
