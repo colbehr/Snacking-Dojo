@@ -8,7 +8,7 @@ import { Router } from "@angular/router"
 })
 export class SnackingdojoComponent implements OnInit {
   productList = []
-  user = {}
+  user: any
   githubUser = {id: "", login: "", avatar_url: ""}
   user_id = ""
   productsUserLikes = []
@@ -16,38 +16,41 @@ export class SnackingdojoComponent implements OnInit {
   constructor(private _dbService: DatabaseService) { }
   checkStatus(){
     console.log("checking status")
-    if(!this.user){
-      console.log("abc")
-    this._dbService.checkStatus().then((githubUser)=>{
+    if(this.githubUser.id){
+      return true
+    }
+        
+      this._dbService.checkStatus().then((githubUser)=>{
+      console.log("dbservice check status")
       console.log(githubUser)
-
+      this.githubUser = githubUser
+      this.updateUser(githubUser.id)
     }).catch((error)=>{
-      console.log(error)
-    })}else{console.log("check status else")}
+      window.location.href = '/auth/github'
+    })
+      
   }
   ngOnInit() {
     console.log("oninit")
     this.checkStatus()
     
     
-
+    this.updateProducts()
     console.log("user", this.user)
     console.log("githubUser", this.githubUser)
-
+    console.log(this.productsUserLikes)
 
   }
   vote(data){
-    console.log("inside vote methoawefawefwed")
+    console.log("inside vote method")
     this.checkStatus()
-    console.log("checked status, user = ", this.user)
-    if(this.user){
-      console.log("inside if(this.user)")
+
+
+      data.github_id = this.githubUser.id
       this._dbService.likeProduct(data).then(()=>{this.updateUser(this.githubUser.id);this.updateProducts()}).catch((err)=>{
       console.log(err)
     })
-    }else{
-      window.location.href = '/auth/github'
-    }
+    
     
   }
   
