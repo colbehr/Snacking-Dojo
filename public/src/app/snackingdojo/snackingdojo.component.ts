@@ -48,7 +48,10 @@ export class SnackingdojoComponent implements OnInit {
 
     if(this.user){
       data.github_id = this.githubUser.id
-      this._dbService.likeProduct(data).then(()=>{this.updateUser(this.githubUser.id);this.updateProducts()}).catch((err)=>{
+      this._dbService.likeProduct(data).then(()=>{
+        this.updateUser(this.githubUser.id);
+        // this.updateProducts()
+      }).catch((err)=>{
       console.log(err)
     })
   }else{
