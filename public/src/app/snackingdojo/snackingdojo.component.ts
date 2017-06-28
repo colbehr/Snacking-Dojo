@@ -4,7 +4,7 @@ import { Router } from "@angular/router"
 @Component({
   selector: 'app-snackingdojo',
   templateUrl: './snackingdojo.component.html',
-  styleUrls: ['./snackingdojo.component.css']
+  styleUrls: ['./snackingdojo.component.css'],
 })
 export class SnackingdojoComponent implements OnInit {
   productList = []

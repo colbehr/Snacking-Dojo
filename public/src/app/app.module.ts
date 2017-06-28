@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { SnackingdojoComponent } from './snackingdojo/snackingdojo.component';
 import { DetailsComponent } from './snackingdojo/details/details.component';
 import { SearchPipe } from './search.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,13 @@ import { SearchPipe } from './search.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule,
+    MdCardModule,
+    MdMenuModule,
+    MdToolbarModule,
+    MdIconModule
+
   ],
   providers: [DatabaseService],
   bootstrap: [AppComponent]
