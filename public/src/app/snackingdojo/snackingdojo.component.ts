@@ -14,21 +14,30 @@ export class SnackingdojoComponent implements OnInit {
   productsUserLikes = []
   productsUserDislikes = []
   constructor(private _dbService: DatabaseService) { }
+  checkStatus(){
+    console.log("checking status")
+    if(!this.user){
+      console.log("abc")
+    this._dbService.checkStatus().then((githubUser)=>{
+      console.log(githubUser)
 
+    }).catch((error)=>{
+      console.log(error)
+    })}else{console.log("check status else")}
+  }
   ngOnInit() {
+    console.log("oninit")
     this.checkStatus()
-    if(this.user_id){
-      this.updateUser(this.user_id)
-    }
     
-    this.updateProducts()
+    
+
     console.log("user", this.user)
     console.log("githubUser", this.githubUser)
-    console.log(this.productsUserLikes)
+
 
   }
   vote(data){
-    console.log("inside vote method")
+    console.log("inside vote methoawefawefwed")
     this.checkStatus()
     console.log("checked status, user = ", this.user)
     if(this.user){
@@ -41,16 +50,7 @@ export class SnackingdojoComponent implements OnInit {
     }
     
   }
-  checkStatus(){
-    if(!this.user){
-    this._dbService.checkStatus().then((githubUser)=>{
-      if(githubUser){this.githubUser = githubUser}
-      this.updateUser(this.githubUser.id)
-
-    }).catch((error)=>{
-      console.log(error)
-    })}
-  }
+  
   updateUser(user_id){
     this.productsUserDislikes = []
     this.productsUserLikes = []

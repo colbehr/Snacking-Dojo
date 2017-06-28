@@ -17,8 +17,8 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
 passport.use(new GitHubStrategy({
@@ -65,13 +65,7 @@ app.get('/auth/github',
   function(req, res){
     // The request will be redirected to GitHub for authentication, so this
     // function will not be called.
-  });
-
-  // GET /auth/github/callback
-  //   Use passport.authenticate() as route middleware to authenticate the
-  //   request.  If authentication fails, the user will be redirected back to the
-  //   login page.  Otherwise, the primary route function will be called,
-  //   which, in this example, will redirect the user to the home page.
+  }),
   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req, res) {
@@ -79,6 +73,13 @@ app.get('/auth/github',
       console.log(req.session);
       res.redirect('/');
     });
+
+  // GET /auth/github/callback
+  //   Use passport.authenticate() as route middleware to authenticate the
+  //   request.  If authentication fails, the user will be redirected back to the
+  //   login page.  Otherwise, the primary route function will be called,
+  //   which, in this example, will redirect the user to the home page.
+  
 
     app.get('/logout', function(req, res){
       req.logout();
