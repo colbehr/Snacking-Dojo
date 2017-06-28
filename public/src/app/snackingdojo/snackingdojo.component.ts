@@ -50,6 +50,7 @@ export class SnackingdojoComponent implements OnInit {
       data.github_id = this.githubUser.id
       this._dbService.likeProduct(data).then(()=>{
         this.updateUser(this.githubUser.id);
+
         // this.updateProducts()
       }).catch((err)=>{
       console.log(err)
@@ -60,7 +61,18 @@ export class SnackingdojoComponent implements OnInit {
     }
     
   }
-  
+  updateProductVotes(product_id, value){
+    let product: {}
+    
+    if(this.productsUserLikes.includes(product_id)){
+        if(value){
+
+        }
+    }
+    this.productList.forEach((value, index)=>{
+
+    })
+  }
   updateUser(user_id){
     this.productsUserDislikes = []
     this.productsUserLikes = []
