@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from "./../user"
+import { Product } from "./../product"
+import { Like } from "./../like"
 import { DatabaseService } from "./../database.service"
+import {GithubUser} from "./../github-user"
 import { Router } from "@angular/router"
 @Component({
   selector: 'app-snackingdojo',
@@ -7,9 +11,9 @@ import { Router } from "@angular/router"
   styleUrls: ['./snackingdojo.component.css']
 })
 export class SnackingdojoComponent implements OnInit {
-  productList = []
-  user: any
-  githubUser = {id: "", username: "", _json: {avatar_url: "", displayName: ""}}
+  productList: Product[]
+  user: User
+  githubUser: GithubUser = new GithubUser
   user_id = ""
   search = ""
   productsUserLikes = []
@@ -18,6 +22,10 @@ export class SnackingdojoComponent implements OnInit {
   checkStatus(){
     console.log("checking status")
     if(this.githubUser.id){
+      if(!this.productsUserLikes&&!this.productsUserDislikes){
+        console.log("inside !proudctsuserlikes && !userDisklikes")
+        this.updateUser(this.user.github_id)
+      }
       return true
     }
         
@@ -34,12 +42,14 @@ export class SnackingdojoComponent implements OnInit {
   ngOnInit() {
     console.log("oninit")
     this.checkStatus()
-    
+    console.log("this.user ", this.user)
+    if(this.user){
+      console.log("user exists, updating user")
+      
+    }
     
     this.updateProducts()
-    console.log("user", this.user)
-    console.log("githubUser", this.githubUser)
-    console.log(this.productsUserLikes)
+   
 
   }
   vote(data){
@@ -47,10 +57,11 @@ export class SnackingdojoComponent implements OnInit {
 
 
     if(this.user){
+      console.log("inside vote(data)  this.user = ", this.user)
       data.github_id = this.githubUser.id
       this._dbService.likeProduct(data).then(()=>{
-        this.updateUser(this.githubUser.id);
-
+        this.updateProductVotes(data.product_id, data.value)
+        // this.updateUser(this.githubUser.id);
         // this.updateProducts()
       }).catch((err)=>{
       console.log(err)
@@ -62,16 +73,72 @@ export class SnackingdojoComponent implements OnInit {
     
   }
   updateProductVotes(product_id, value){
-    let product: {}
+    let product: Product
+    let inc: number
     
     if(this.productsUserLikes.includes(product_id)){
+      console.log("found product in productsUserLikes list", this.productsUserLikes)
         if(value){
-
+          inc = -1
+          
+        }else{
+          inc = -2
+          //add to dislikes array
+          this.productsUserDislikes.push(product_id)
         }
-    }
-    this.productList.forEach((value, index)=>{
+        this.productsUserLikes.forEach((products, index)=>{
+          if (products == product_id){
+            console.log("local user likes ", this.productsUserLikes)
+            this.productsUserLikes.splice(index, 1)
+            console.log("removing from likes", products)
+            console.log("local user likes after...", this.productsUserLikes)
+            console.log("users likes: ", this.user.likes)
 
+          }
+        })
+        
+    }
+    else if(this.productsUserDislikes.includes(product_id)){
+      if(!value){
+        inc = 1
+        
+      }else{
+        inc = 2
+        //add to likes
+        this.productsUserLikes.push(product_id)
+      }
+      this.productsUserDislikes.forEach((products, index)=>{
+          if (products == product_id){
+            this.productsUserDislikes.splice(index, 1)
+          }
+        })
+      
+
+    }
+    else{
+      console.log("inside else")
+      if(value){
+        inc = 1
+        this.productsUserLikes.push(product_id)
+      }else{
+        this.productsUserDislikes.push(product_id)
+        inc = -1
+      }
+    }
+
+    this.productList.forEach((product:Product, index)=>{
+      if(product._id == product_id){
+        console.log("incrementing product.votes: current = ", product.votes)
+        product.votes +=inc
+        console.log("after inc...", product.votes)
+        
+      }
     })
+    this.productList.sort((product1, product2)=>{
+      return product2.votes - product1.votes
+    })
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    
   }
   updateUser(user_id){
     this.productsUserDislikes = []
