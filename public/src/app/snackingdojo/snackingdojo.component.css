@@ -19,10 +19,10 @@
   padding: 12px;
 }
 .up-voted{
-  color: red;
+  color: purple;
 }
 .down-voted{
-  color: green;
+  color: blue;
 }
 .card {
   display: -webkit-box;
@@ -86,12 +86,12 @@ button {
     margin: 4px 13px;
     cursor: pointer;
 }
-.uvote {
+/*.uvote {
     background-color: green;
 }
 .dvote {
     background-color: red;
-}
+}*/
 .card__description{
     text-align: center;
     font-size: 10px;
@@ -172,6 +172,6 @@ md-card-actions a{
   font-size: 35px;
 }
 
-md-card-actions .fa-arrow-circle-down {
+/*md-card-actions .fa-arrow-circle-down {
     color: #F44336;
-}
+}*/
