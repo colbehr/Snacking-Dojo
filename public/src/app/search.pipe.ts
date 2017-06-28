@@ -9,7 +9,7 @@ export class SearchPipe implements PipeTransform {
     if(!search){return products}
     let filtered = []
     for(let product of products){
-      if(product.title.toLowerCase().includes(search)){
+      if(product.name.toLowerCase().includes(search)){
         filtered.push(product)
       }
     }

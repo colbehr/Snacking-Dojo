@@ -11,6 +11,7 @@ export class SnackingdojoComponent implements OnInit {
   user: any
   githubUser = {id: "", username: "", _json: {avatar_url: "", displayName: ""}}
   user_id = ""
+  search = ""
   productsUserLikes = []
   productsUserDislikes = []
   constructor(private _dbService: DatabaseService) { }
