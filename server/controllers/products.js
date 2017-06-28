@@ -11,6 +11,15 @@ module.exports = {
       }
     })
   },
+  getOne: (request, response)=>{
+    Product.findById(request.params.id, (err, product)=>{
+      if(err){
+        response.status(500).json("error finding product")
+      }else{
+        response.json(product)
+      }
+    })
+  },
   create: (request, response)=>{
     //request.body should be of the form:
     //{name: "product-name", img: "www.img.com/img.png"}

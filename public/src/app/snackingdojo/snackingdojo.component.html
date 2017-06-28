@@ -33,7 +33,7 @@
     <div md-card-avatar class="example-header-image"><p>{{item.votes}}</p></div>
     <md-card-title>{{item.name}}</md-card-title>
   </md-card-header>
-  <img md-card-image src="{{item.img}}">
+  <a [routerLink]="['/details/', item._id]"><img md-card-image src="{{item.img}}"></a>
   <md-card-subtitle *ngIf = "item.category">Category</md-card-subtitle>
   <!--<md-card-content>
     <p>
