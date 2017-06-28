@@ -135,7 +135,11 @@ export class SnackingdojoComponent implements OnInit {
       }
     })
     this.productList.sort((product1, product2)=>{
+      if(product2.votes - product1.votes !=0){
       return product2.votes - product1.votes
+      }else{
+        return product1.name.localeCompare(product2.name)
+      }
     })
     console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     
