@@ -19,7 +19,7 @@ export class DatabaseService {
     return this._http.get('/users').map(data=>data.json()).toPromise()
   }
   likeProduct(id_object_with_value){
-    //{product_id = "woifjoi3f23f", user_id = "fj23iofj22442", value = "0" (zero or 1)}
+    //{product_id = "woifjoi3f23f", github_id = "fj23iofj22442", value = "0" (zero or 1)}
     return this._http.post("/users/like", id_object_with_value).map(data=>data.json()).toPromise()
   }
 

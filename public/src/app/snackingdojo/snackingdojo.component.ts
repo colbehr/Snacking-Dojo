@@ -22,6 +22,8 @@ export class SnackingdojoComponent implements OnInit {
     }
     
     this.updateProducts()
+    console.log("user", this.user)
+    console.log("githubUser", this.githubUser)
     console.log(this.productsUserLikes)
 
   }
@@ -31,7 +33,7 @@ export class SnackingdojoComponent implements OnInit {
     console.log("checked status, user = ", this.user)
     if(this.user){
       console.log("inside if(this.user)")
-      this._dbService.likeProduct(data).then(()=>{this.updateUser(this.user_id);this.updateProducts()}).catch((err)=>{
+      this._dbService.likeProduct(data).then(()=>{this.updateUser(this.githubUser.id);this.updateProducts()}).catch((err)=>{
       console.log(err)
     })
     }else{

@@ -11,7 +11,9 @@ module.exports = {
     //user sends post request with user/product _id in body, and maybe like/dislike boolean?
     //{user_id: "lakf32f3l3ktt43", product_id: "lf23f23424f", value: "0"}
     //check like value, toggle it or remove it or add it
-    User.findOne({github_id: request.body.user_id}).exec((error, user)=>{
+    User.findOne({github_id: request.body.github_id}).exec((error, user)=>{
+      console.log(request.body)
+      console.log("request.body^^^^^^^^^^^^^^^^^^^^^^^")
       if(error){
         console.log(error)
         response.status(500).json(false)
