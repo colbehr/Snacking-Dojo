@@ -23,6 +23,10 @@ let UserSchema = mongoose.Schema({
   },
   token: {
     type: String
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
   ,
   likes: [{product_id: {type: mongoose.Schema.Types.ObjectId, ref: "Product"}, value: Boolean}] 

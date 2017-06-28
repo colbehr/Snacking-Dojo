@@ -9,7 +9,7 @@ import { Router } from "@angular/router"
 export class SnackingdojoComponent implements OnInit {
   productList = []
   user: any
-  githubUser = {id: "", login: "", avatar_url: ""}
+  githubUser = {id: "", username: "", _json: {avatar_url: "", displayName: ""}}
   user_id = ""
   productsUserLikes = []
   productsUserDislikes = []
@@ -26,7 +26,7 @@ export class SnackingdojoComponent implements OnInit {
       this.githubUser = githubUser
       this.updateUser(githubUser.id)
     }).catch((error)=>{
-      window.location.href = '/auth/github'
+      
     })
       
   }
@@ -43,14 +43,17 @@ export class SnackingdojoComponent implements OnInit {
   }
   vote(data){
     console.log("inside vote method")
-    this.checkStatus()
 
 
+    if(this.user){
       data.github_id = this.githubUser.id
       this._dbService.likeProduct(data).then(()=>{this.updateUser(this.githubUser.id);this.updateProducts()}).catch((err)=>{
       console.log(err)
     })
-    
+  }else{
+      window.location.href = '/auth/github'
+      // this.checkStatus()
+    }
     
   }
   
@@ -70,7 +73,7 @@ export class SnackingdojoComponent implements OnInit {
           this.productsUserDislikes.push(like.product_id)
         }
       })}else{
-        this._dbService.createUser({github_id : this.githubUser.id, username: this.githubUser.login, img: this.githubUser.avatar_url}).then((user)=>{
+        this._dbService.createUser({github_id : this.githubUser.id, username: this.githubUser.username, img: this.githubUser._json.avatar_url}).then((user)=>{
           this.user = user
         }).catch((asdf)=>{
           console.log(asdf)
