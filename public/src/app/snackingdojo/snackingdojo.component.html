@@ -1,8 +1,11 @@
 <div *ngIf = "user">
-  <h2 style="display: inline-block">Welcome {{user?.username}}</h2><a href="/logout"><button>Logout</button></a>
+  <h2 style="display: inline-block">Welcome {{user?.username}}</h2><a href="/logout"><button>Logout</button></a> <img *ngIf="user.img" src="{{user.img}}" style="width: 100px; float: right">
 </div>
 <div *ngIf="!user">
   <h2 style="display: inline-block">Login to vote</h2><a href="/auth/github"><button>Login</button></a>
+</div>
+<div class="searchbar">
+
 </div>
 <div id="foodwrapper">
   <div class="card make-it-slow" *ngFor = "let item of productList">

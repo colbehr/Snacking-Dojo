@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SnackingdojoComponent } from './snackingdojo/snackingdojo.component';
 import { DetailsComponent } from './snackingdojo/details/details.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SnackingdojoComponent,
-    DetailsComponent
+    DetailsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
