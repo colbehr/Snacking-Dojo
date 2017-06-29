@@ -11,6 +11,7 @@ import { DetailsComponent } from './snackingdojo/details/details.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { TruncatePipe } from './truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angu
     LoginComponent,
     SnackingdojoComponent,
     DetailsComponent,
-    SearchPipe
+    SearchPipe,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

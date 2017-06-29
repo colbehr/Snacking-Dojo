@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SnackingdojoComponent } from './snackingdojo.component';
-
+import { TruncatePipe } from '../truncate.pipe';
 describe('SnackingdojoComponent', () => {
   let component: SnackingdojoComponent;
   let fixture: ComponentFixture<SnackingdojoComponent>;
