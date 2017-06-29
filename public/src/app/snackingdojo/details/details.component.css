@@ -1,6 +1,7 @@
 
 .productinfo {
   font-family: sans-serif;
+  min-width: 650px
 }
 .itemimg {
   position: relative;
