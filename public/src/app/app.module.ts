@@ -10,7 +10,7 @@ import { SnackingdojoComponent } from './snackingdojo/snackingdojo.component';
 import { DetailsComponent } from './snackingdojo/details/details.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdDialogModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialog } from '@angular/material';
+import { MdDialogModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialog, MdButton } from '@angular/material';
 import { TruncatePipe } from './truncate.pipe';
 import { AdminComponent } from './admin/admin.component';
 

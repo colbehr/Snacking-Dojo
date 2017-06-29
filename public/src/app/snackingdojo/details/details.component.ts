@@ -5,6 +5,8 @@ import {Product} from "./../../product"
 import {User} from "./../../user"
 import {GithubUser} from "./../../github-user"
 import {Comment} from "./../../comment"
+import { MdButton } from '@angular/material';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

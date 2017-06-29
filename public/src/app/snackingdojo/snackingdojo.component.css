@@ -270,14 +270,12 @@ input:focus ~ .highlight {
   z-index: 1000
 }
 
-
 .mat-toolbar{
   background-color: #4fab4f;
  color: white
 }
 
 .mat-toolbar p{
-
     font-family: sans-serif;
 }
 .comment-icon span{

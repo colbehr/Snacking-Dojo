@@ -1,25 +1,34 @@
-<h1 *ngIf="!githubUser">Login to comment</h1>
-<h1 *ngIf="githubUser">Hello {{githubUser.username}}</h1>
+<!-- <h1 *ngIf="githubUser">Hello {{githubUser.username}}</h1> -->
 <div class="productinfo" *ngIf="product">
-  
-    <img src="{{product.img}}" alt="">
-
-
+<!-- <a href="#" md-dialog-close style="float:right; font-size:25px"><span class="fa fa-times"></span></a> -->
+ <md-toolbar>
+   {{product?.name}}
+ </md-toolbar>
+  <div class="left">
+    <div class="itemimg">
+      <img src="{{product.img}}" alt="">
+    </div>
+    <br />
     <div class="productdesc">
-      <h3>{{product?.name}}</h3>
+      <h3></h3>
       <hr>
       <h4>Votes: {{product?.votes}}</h4>
       <h4>Comments: {{product?.comments?.length}}</h4>
 
     </div>
-
+  </div>
+  <div class="right">
+    <h3 *ngIf="!githubUser">Login to comment</h3>
+    <form (submit)="submitComment(commentData)" *ngIf="githubUser">
+      <div class="group">
+        <input type="text" required name="comment" [(ngModel)]="commentData.comment">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Comment</label>
+      </div><br /><br />
+      <button [disabled]="!githubUser" MdButton>Submit Comment</button>
+    </form>
     <div class="comments">
-      <h5>Tell the Dojo what you think of these snacks</h5>
-      <form (submit)="submitComment(commentData)">
-        <textarea rows="4" cols="50" name="comment" [(ngModel)] = "commentData.comment"> 
-        </textarea> 
-        <button [disabled] = "!githubUser">Submit Comment</button>   
-      </form>
       <div class="comment" *ngFor="let comment of product.comments">
         <img style="width: 50px; border-radius: 50%" src="{{comment._user?.img}}">
         <div style="display: inline-block; vertical-align: top; margin-left: 10px">
@@ -29,5 +38,5 @@
         <hr>
       </div>
     </div>
+  </div>
 </div>
-
