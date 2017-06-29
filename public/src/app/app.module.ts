@@ -10,12 +10,8 @@ import { SnackingdojoComponent } from './snackingdojo/snackingdojo.component';
 import { DetailsComponent } from './snackingdojo/details/details.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-<<<<<<< HEAD
-import { MdDatepickerModule, MdNativeDateModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
-=======
 import { MdDialogModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialog } from '@angular/material';
 import { TruncatePipe } from './truncate.pipe';
->>>>>>> master
 
 @NgModule({
   declarations: [
@@ -36,9 +32,7 @@ import { TruncatePipe } from './truncate.pipe';
     MdDialogModule,
     MdMenuModule,
     MdToolbarModule,
-    MdIconModule,
-    MdDatepickerModule,
-    MdNativeDateModule
+    MdIconModule
 
   ],
   providers: [DatabaseService,MdDialog],

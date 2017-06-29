@@ -1,30 +1,7 @@
-<<<<<<< HEAD
-
-
-
-<md-toolbar>
-
-<div *ngIf = "user" class="bar">
-  <h2 style="display: inline-block">Welcome {{user?.username}}</h2>
-  <a href="/logout"><button>Logout</button></a> 
-  <img *ngIf="user.img" src="{{user.img}}" style="width: 100px; float: right">
-</div>
-<div *ngIf="!user" class="bar">
-  <h2 style="display: inline-block">Login to vote</h2>
-  <a href="/auth/github"><button>Login</button></a>
-</div>
-<div class="searchbar">
-<p>Search : <input class="SearchBox-query" type="text" name="search" placeholder="Search product name"
-value="" [(ngModel)]="search"></p>
-</div>
-
-</md-toolbar>
-=======
 
 <div class="loaderFull">
   <div class="loaderIcon"></div>
 </div>
->>>>>>> master
 
 <md-toolbar *ngIf="user">
   <span>Welcome,  {{user?.username}}</span>
@@ -77,9 +54,17 @@ value="" [(ngModel)]="search"></p>
             <a (click)="vote({product_id: item._id, value: 1})"><i  [ngClass]="{'up-voted': productsUserLikes.includes(item._id)}" class="fa fa-arrow-circle-up" aria-hidden="true"></i></a>
           </div>
           <div class="halfWidthButton">
+            <span>&nbsp;</span>
+            <i style="color: green" class="fa fa-comment comment-icon" aria-hidden="true"><span>{{item.comments.length}}</span></i>
+          </div>
+          <div class="halfWidthButton">
             <a (click)="vote({product_id: item._id, value: 0})"><i [ngClass]="{'down-voted': productsUserDislikes.includes(item._id)}" class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
           </div>
         </div>
       </md-card-actions>
     </md-card>
   </div>
+
+<div style="color: black; font-family: sans-serif; text-align: center; width: 100%">
+  <span>© 2017 SnackingDojo · All Rights Reserved</span>  
+</div>
