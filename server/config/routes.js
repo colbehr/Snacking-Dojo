@@ -17,8 +17,10 @@ module.exports = (app)=>{
   //products
   app.post("/products/create", products.create)
   app.post("/products/addMany", products.createMany)
+  app.post("/products/comment", products.addComment)
   app.get("/products", products.getAll)
   app.get("/products/:id", products.getOne)
+
 
   app.get("*", (request, response)=>{
     response.sendFile(path.resolve("./public/dist/index.html"))
