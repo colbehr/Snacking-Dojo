@@ -5,6 +5,8 @@ import {Product} from "./../../product"
 import {User} from "./../../user"
 import {GithubUser} from "./../../github-user"
 import {Comment} from "./../../comment"
+import { MdButton } from '@angular/material';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -34,7 +36,7 @@ export class DetailsComponent implements OnInit {
     })
     this.commentData = new Comment
     this.commentData.user_id = this.user_id
-    
+
   }
   ngOnInit() {
     console.log("***********")
