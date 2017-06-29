@@ -11,17 +11,17 @@ import {Comment} from "./../../comment"
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  product = {img: "", name: ""}
+  product = new Product
   product_id = ""
   //need to sort comments somehow?
   //need to refresh item page after adding comment
-
+  user_id = ""
   githubUser: GithubUser
   commentData: Comment = new Comment
   constructor(private _route: ActivatedRoute, private _dbService: DatabaseService, private _router: Router) {
     this._route.params.subscribe((param)=>{
       this.product_id = param.id
-      
+
     })
   }
   submitComment(comment){
@@ -32,7 +32,9 @@ export class DetailsComponent implements OnInit {
     }).catch((err)=>{
       console.log(err)
     })
-
+    this.commentData = new Comment
+    this.commentData.user_id = this.user_id
+    
   }
   ngOnInit() {
     console.log("***********")
@@ -41,7 +43,9 @@ export class DetailsComponent implements OnInit {
       this.githubUser = user
       this._dbService.getOneUser(user.id).then((dbUser)=>{
         console.log("user form db?", dbUser)
+        this.user_id = dbUser._id
         this.commentData.user_id = dbUser._id
+
         console.log(this.commentData)
       }).catch((err)=>{
         console.log("differnt error")
