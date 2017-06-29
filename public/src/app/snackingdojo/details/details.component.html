@@ -30,9 +30,12 @@
     </form>
     <div class="comments">
       <div class="comment" *ngFor="let comment of product.comments">
-        <img style="width: 50px" src="{{comment._user?.img}}">
-        <p style="display: inline">{{comment._user?.username}}: {{comment.createdAt}}</p>
+        <img style="width: 50px; border-radius: 50%" src="{{comment._user?.img}}">
+        <div style="display: inline-block; vertical-align: top; margin-left: 10px">
+        <p>{{comment._user?.username}} -- {{comment.createdAt | date: "MMM d h:mm a"}}</p>
+        </div>
         <p>{{comment.comment}}</p>
+        <hr>
       </div>
     </div>
   </div>
