@@ -10,15 +10,13 @@
     </div>
     <br />
     <div class="productdesc">
-      <h3></h3>
-      <hr>
       <h4>Votes: {{product?.votes}}</h4>
       <h4>Comments: {{product?.comments?.length}}</h4>
 
     </div>
   </div>
   <div class="right">
-    <h3 *ngIf="!githubUser">Login to comment</h3>
+    <h3 style="text-align: center" *ngIf="!githubUser">Login to comment</h3>
     <form (submit)="submitComment(commentData)" *ngIf="githubUser">
       <div class="group">
         <input type="text" required name="comment" [(ngModel)]="commentData.comment">
@@ -32,7 +30,7 @@
       <div class="comment" *ngFor="let comment of product.comments">
         <img style="width: 50px; border-radius: 50%" src="{{comment._user?.img}}">
         <div style="display: inline-block; vertical-align: top; margin-left: 10px">
-        <p>{{comment._user?.username}} -- {{comment.createdAt | date: "MMM d h:mm a"}}</p>
+        <p>{{comment._user?.username}} <span>{{comment.createdAt | date: "MMM d h:mm a"}}</span></p>
         </div>
         <p>{{comment.comment}}</p>
         <hr>
