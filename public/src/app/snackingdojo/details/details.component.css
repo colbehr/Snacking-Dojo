@@ -1,7 +1,5 @@
 
-.productinfo {
 
-}
 .itemimg {
   position: relative;
   width: 100%;
@@ -27,7 +25,6 @@
     margin: 20px;
     font-family: Arial, Helvetica, sans-serif;
     width: 500px;
-
 }
 
 textarea {
@@ -61,4 +58,13 @@ hr {
     border-top: 1px solid black;
     margin: 1em 0;
     padding: 0;
+}
+.thumbnail:hover {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:300px;
+    height:auto;
+    display:block;
+    z-index:999;
 }

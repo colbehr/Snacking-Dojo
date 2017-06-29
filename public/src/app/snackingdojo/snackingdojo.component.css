@@ -101,7 +101,7 @@ md-card-actions {
 }
 
 .halfWidthButton {
-  width: 49%;
+  width: 32%;
   text-align: center
 }
 
@@ -279,4 +279,13 @@ input:focus ~ .highlight {
 .mat-toolbar p{
 
     font-family: sans-serif;
+}
+.comment-icon span{
+      position: relative;
+      left: -23px;
+      color: white;
+      font-family: sans-serif;
+      font-size: 20px;
+      top: -6px;
+      
 }
