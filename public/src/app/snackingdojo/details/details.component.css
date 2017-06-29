@@ -18,7 +18,7 @@
 }
 .productdesc {
     width: 100%;
-    text-align: center;
+    /*text-align: center;*/
     /*font-family: Arial, Helvetica, sans-serif;*/
     display: inline-block;
     vertical-align: top;
@@ -92,6 +92,7 @@ input 				{
   display:block;
   width:100%;
   border:none;
+  color: white;
   border-bottom:1px solid #4fab4f;
 }
 input:focus 		{ outline:none; }

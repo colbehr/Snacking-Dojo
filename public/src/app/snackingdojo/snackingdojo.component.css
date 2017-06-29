@@ -154,6 +154,7 @@ md-card:hover {
 }
 input 				{
   background: #4fab4f;
+  color: white;
   font-size:18px;
   padding:10px 10px 10px 5px;
   display:block;
@@ -196,7 +197,7 @@ input:focus ~ label, input:valid ~ label 		{
   width:0;
   bottom:1px;
   position:absolute;
-  background:#4fab4f;
+  background:white;
   transition:0.2s ease all;
   -moz-transition:0.2s ease all;
   -webkit-transition:0.2s ease all;
@@ -285,5 +286,5 @@ input:focus ~ .highlight {
       font-family: sans-serif;
       font-size: 20px;
       top: -6px;
-      
+
 }
