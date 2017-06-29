@@ -27,6 +27,7 @@ export class DetailsComponent implements OnInit {
   }
   submitComment(comment){
     console.log(comment)
+    comment.createdAt = Date.now()
     this._dbService.addComment(comment).then((something)=>{
       console.log(something)
       this.getProduct()
