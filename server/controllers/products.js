@@ -22,7 +22,7 @@ module.exports = {
     })
   },
   addComment: (request, response)=>{
-    Product.findByIdAndUpdate(request.body.product_id, {$push: {comments: {comment: request.body.comment, _user: request.body.user_id}}}, (err, product)=>{
+    Product.findByIdAndUpdate(request.body.product_id, {$push: {comments: {comment: request.body.comment, _user: request.body.user_id, createdAt: request.body.createdAt}}}, (err, product)=>{
       if(err){
         console.log("err adding comment")
         response.status(500).json(err)
