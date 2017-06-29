@@ -22,7 +22,7 @@
       </form>
       <div class="comment" *ngFor="let comment of product.comments">
         <img style="width: 50px" src="{{comment._user?.img}}"><p style="display: inline">{{comment._user?.username}}: </p>
-        <p>{{comment.comment}}</p>
+        <p>{{comment.comment}} {{comment.createdAt}}</p>
       </div>
     </div>
 </div>
