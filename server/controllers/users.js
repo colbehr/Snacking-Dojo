@@ -5,6 +5,7 @@ let Product = mongoose.model("Product")
 module.exports = {
   
   like: (request, response)=>{
+    if(true){
     User.findOne({github_id: request.body.github_id}, (err, user)=>{
       if(err){
         console.log("err in like users.js", err)
@@ -86,7 +87,7 @@ module.exports = {
         }
       }
     })
-    
+  }  
   },
   
   getAll: (request, response)=>{
