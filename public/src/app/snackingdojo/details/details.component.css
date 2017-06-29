@@ -68,3 +68,6 @@ hr {
     display:block;
     z-index:999;
 }
+.comment:hover {
+    background-color: #eee;
+}
