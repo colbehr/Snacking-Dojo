@@ -44,7 +44,7 @@
         <div md-card-avatar class="example-header-image">
           <p>{{item.votes}}</p>
         </div>
-        <md-card-title>{{item.name | truncate: 50}}</md-card-title>
+        <md-card-title>{{item.name | truncate: 35}}</md-card-title>
       </md-card-header>
       <img md-card-image src="{{item.img}}" (click)="openItem(item._id)">
       <md-card-subtitle *ngIf="item.category">Category</md-card-subtitle>

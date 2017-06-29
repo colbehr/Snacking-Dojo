@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "./../user"
 import { Product } from "./../product"
 import { Like } from "./../like"
+import {Comment} from "./../comment"
 import { DatabaseService } from "./../database.service"
 import {GithubUser} from "./../github-user"
 import { Router } from "@angular/router"
@@ -44,6 +45,18 @@ export class SnackingdojoComponent implements OnInit {
     let config = new MdDialogConfig();
     let dialogRef: any = this.dialog.open(DetailsComponent, config)
     dialogRef.componentInstance.product_id = id
+    dialogRef.afterClosed().subscribe(()=>{
+      if(dialogRef.componentInstance.commentCount){
+        this.productList.forEach((product)=>{
+        if(product._id == id){
+          for(let i = 0; i < dialogRef.componentInstance.commentCount; i++){
+            console.log("pushing dummy comment", product.comments[0])
+            product.comments.push(product.comments[0])
+          }
+          
+        }
+      })}
+    })
   }
 
   ngOnInit() {
