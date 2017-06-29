@@ -10,7 +10,7 @@ import { SnackingdojoComponent } from './snackingdojo/snackingdojo.component';
 import { DetailsComponent } from './snackingdojo/details/details.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule } from '@angular/material';
+import { MdDialogModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialog } from '@angular/material';
 import { TruncatePipe } from './truncate.pipe';
 
 @NgModule({
@@ -29,12 +29,13 @@ import { TruncatePipe } from './truncate.pipe';
     HttpModule,
     BrowserAnimationsModule,
     MdCardModule,
+    MdDialogModule,
     MdMenuModule,
     MdToolbarModule,
     MdIconModule
 
   ],
-  providers: [DatabaseService],
+  providers: [DatabaseService,MdDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

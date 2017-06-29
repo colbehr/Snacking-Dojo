@@ -275,3 +275,8 @@ input:focus ~ .highlight {
   background-color: #4fab4f;
  color: white
 }
+
+.mat-toolbar p{
+
+    font-family: sans-serif;
+}

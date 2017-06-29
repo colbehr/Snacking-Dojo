@@ -18,7 +18,7 @@ export class DetailsComponent implements OnInit {
 
   githubUser: GithubUser
   commentData: Comment = new Comment
-  constructor(private _route: ActivatedRoute, private _dbService: DatabaseService, private _router: Router) { 
+  constructor(private _route: ActivatedRoute, private _dbService: DatabaseService, private _router: Router) {
     this._route.params.subscribe((param)=>{
       this.product_id = param.id
       
@@ -26,14 +26,13 @@ export class DetailsComponent implements OnInit {
   }
   submitComment(comment){
     console.log(comment)
-    
     this._dbService.addComment(comment).then((something)=>{
       console.log(something)
       this.getProduct()
     }).catch((err)=>{
       console.log(err)
     })
-    
+
   }
   ngOnInit() {
     console.log("***********")
