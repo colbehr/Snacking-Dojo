@@ -1,13 +1,23 @@
-<div *ngIf = "user">
-  <h2 style="display: inline-block">Welcome {{user?.username}}</h2><a href="/logout"><button>Logout</button></a> <img *ngIf="user.img" src="{{user.img}}" style="width: 100px; float: right">
+
+
+
+<md-toolbar>
+
+<div *ngIf = "user" class="bar">
+  <h2 style="display: inline-block">Welcome {{user?.username}}</h2>
+  <a href="/logout"><button>Logout</button></a> 
+  <img *ngIf="user.img" src="{{user.img}}" style="width: 100px; float: right">
 </div>
-<div *ngIf="!user">
-  <h2 style="display: inline-block">Login to vote</h2><a href="/auth/github"><button>Login</button></a>
+<div *ngIf="!user" class="bar">
+  <h2 style="display: inline-block">Login to vote</h2>
+  <a href="/auth/github"><button>Login</button></a>
 </div>
 <div class="searchbar">
-<p>Search : <input type="text" name="search" value="" [(ngModel)]="search"></p>
+<p>Search : <input class="SearchBox-query" type="text" name="search" placeholder="Search product name"
+value="" [(ngModel)]="search"></p>
 </div>
 
+</md-toolbar>
 
 <!--<div id="foodwrapper">
   <div class="card make-it-slow" *ngFor = "let item of productList | search: search">

@@ -1,13 +1,17 @@
 <div class="productinfo" *ngIf="product">
   
-    <div class="itemimg">
     <img src="{{product.img}}" alt="">
-    </div>
+
 
     <div class="productdesc">
       <h3>{{product?.name}}</h3>
       <hr>
       <h4>Votes: {{product?.votes}}</h4>
+      <!--<md-input-container>
+      <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker>-->
 
     </div>
 

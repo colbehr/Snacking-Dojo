@@ -172,6 +172,25 @@ md-card-actions a{
   font-size: 35px;
 }
 
+.header {
+  display: flex;
+  width: 60%;
+  height: 80px;
+  background-color: white;
+  margin: 60px 5px 5px 50px;
+}
+
+
+.searchbar{
+ margin-left: 50%;
+}
+.bar {
+  margin-left: 5%;
+}
+md-toolbar {
+  height: 100px;
+}
+
 /*md-card-actions .fa-arrow-circle-down {
     color: #F44336;
 }*/

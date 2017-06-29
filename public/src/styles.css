@@ -3,5 +3,6 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
-    background-color: lightgrey;
+    background-image: url("assets/img/background.jpg");
+    display: flex;
 }
