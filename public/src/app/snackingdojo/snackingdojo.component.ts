@@ -46,11 +46,16 @@ export class SnackingdojoComponent implements OnInit {
     let dialogRef: any = this.dialog.open(DetailsComponent, config)
     dialogRef.componentInstance.product_id = id
     dialogRef.afterClosed().subscribe(()=>{
-      this.productList.forEach((product)=>{
+      if(dialogRef.componentInstance.commentCount){
+        this.productList.forEach((product)=>{
         if(product._id == id){
-          product.comments.push(product.comments[0])
+          for(let i = 0; i < dialogRef.componentInstance.commentCount; i++){
+            console.log("pushing dummy comment", product.comments[0])
+            product.comments.push(product.comments[0])
+          }
+          
         }
-      })
+      })}
     })
   }
 

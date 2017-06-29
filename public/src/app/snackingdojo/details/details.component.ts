@@ -13,6 +13,7 @@ import {Comment} from "./../../comment"
 export class DetailsComponent implements OnInit {
   product = new Product
   product_id = ""
+  commentCount = 0
   //need to sort comments somehow?
   //need to refresh item page after adding comment
   user_id = ""
@@ -34,7 +35,7 @@ export class DetailsComponent implements OnInit {
     })
     this.commentData = new Comment
     this.commentData.user_id = this.user_id
-    
+    this.commentCount += 1
   }
   ngOnInit() {
     console.log("***********")
