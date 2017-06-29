@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 
@@ -18,43 +19,67 @@ value="" [(ngModel)]="search"></p>
 </div>
 
 </md-toolbar>
+=======
 
-<!--<div id="foodwrapper">
-  <div class="card make-it-slow" *ngFor = "let item of productList | search: search">
-      <img class="card__image" src="{{item.img}}" alt="">
-    <div class="card__description" >
-     <p >{{item.name}}</p>
-    </div>
-    <div class="card__actions card-social">
-      <ul>
-        <li><a  (click)="vote({product_id: item._id, value: 1})"><i  [ngClass]="{'down-voted': productsUserLikes.includes(item._id)}" class="fa fa-angle-up" aria-hidden="true"></i></a>
-        </li>
-        <li class="points" >{{item.votes}}</li>
-        <li><a (click)="vote({product_id: item._id, value: 0})"><i [ngClass]="{'up-voted': productsUserDislikes.includes(item._id)}" class="fa fa-angle-down" aria-hidden="true"></i></a>
-        </li>
-      </ul>
-
-    </div>
-</div>-->
-
-<div id="foodwrapper">
-<md-card class="example-card" *ngFor = "let item of productList | search: search">
-  <md-card-header>
-    <div md-card-avatar class="example-header-image"><p>{{item.votes}}</p></div>
-    <md-card-title>{{item.name}}</md-card-title>
-  </md-card-header>
-  <a [routerLink]="['/details/', item._id]"><img md-card-image src="{{item.img}}"></a>
-  <md-card-subtitle *ngIf = "item.category">Category</md-card-subtitle>
-  <!--<md-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </md-card-content>-->
-  <md-card-actions>
-      <a (click)="vote({product_id: item._id, value: 1})"><i  [ngClass]="{'down-voted': productsUserLikes.includes(item._id)}" class="fa fa-arrow-circle-up" aria-hidden="true"></i></a>
-      <a (click)="vote({product_id: item._id, value: 0})"><i [ngClass]="{'up-voted': productsUserDislikes.includes(item._id)}" class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
-  </md-card-actions>
-</md-card>
+<div class="loaderFull">
+  <div class="loaderIcon"></div>
 </div>
+>>>>>>> master
+
+<md-toolbar *ngIf="user">
+  <span>Welcome,  {{user?.username}}</span>
+  <span class="spacer"></span>
+  <div class="searchbar">
+    <div class="group">
+      <input type="text" required name="search" [(ngModel)]="search">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Search</label>
+    </div>
+  </div>
+  <span class="spacer"></span>
+  <a href="/logout">
+    <span class="fa fa-sign-out"></span>
+    <p style="display:inline">Sign out</p>
+  </a>
+  <img *ngIf="user.img" src="{{user.img}}" style="width: 50px;margin-left: 10px;border-radius:100px">
+</md-toolbar>
+<md-toolbar *ngIf="!user">
+  <span>Login to vote</span>
+  <span class="spacer"></span>
+  <div class="searchbar">
+    <div class="group">
+      <input type="text" required name="search" [(ngModel)]="search">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label>Search</label>
+    </div>
+  </div>
+  <span class="spacer"></span>
+  <a href="/auth/github" class="myButton">
+    <span class="fa fa-sign-in"></span>
+    <p style="display:inline">&nbsp;Sign in</p>
+  </a>
+</md-toolbar>
+  <div id="foodwrapper" >
+    <md-card class="example-card" *ngFor="let item of productList | search: search" >
+      <md-card-header>
+        <div md-card-avatar class="example-header-image">
+          <p>{{item.votes}}</p>
+        </div>
+        <md-card-title>{{item.name | truncate: 50}}</md-card-title>
+      </md-card-header>
+      <img md-card-image src="{{item.img}}" (click)="openItem(item._id)">
+      <md-card-subtitle *ngIf="item.category">Category</md-card-subtitle>
+      <md-card-actions>
+        <div class="VoteButtons">
+          <div class="halfWidthButton">
+            <a (click)="vote({product_id: item._id, value: 1})"><i  [ngClass]="{'up-voted': productsUserLikes.includes(item._id)}" class="fa fa-arrow-circle-up" aria-hidden="true"></i></a>
+          </div>
+          <div class="halfWidthButton">
+            <a (click)="vote({product_id: item._id, value: 0})"><i [ngClass]="{'down-voted': productsUserDislikes.includes(item._id)}" class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </md-card-actions>
+    </md-card>
+  </div>

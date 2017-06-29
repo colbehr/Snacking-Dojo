@@ -5,6 +5,8 @@ import { Like } from "./../like"
 import { DatabaseService } from "./../database.service"
 import {GithubUser} from "./../github-user"
 import { Router } from "@angular/router"
+import { MdDialog, MdDialogConfig } from '@angular/material';
+import { DetailsComponent } from "./details/details.component"
 @Component({
   selector: 'app-snackingdojo',
   templateUrl: './snackingdojo.component.html',
@@ -18,7 +20,7 @@ export class SnackingdojoComponent implements OnInit {
   search = ""
   productsUserLikes = []
   productsUserDislikes = []
-  constructor(private _dbService: DatabaseService) { }
+  constructor(private _dbService: DatabaseService, public dialog : MdDialog) { }
   checkStatus(){
     console.log("checking status")
     if(this.githubUser.id){
@@ -28,28 +30,33 @@ export class SnackingdojoComponent implements OnInit {
       }
       return true
     }
-        
+
       this._dbService.checkStatus().then((githubUser)=>{
       console.log("dbservice check status")
       console.log(githubUser)
       this.githubUser = githubUser
       this.updateUser(githubUser.id)
     }).catch((error)=>{
-      
     })
-      
   }
+
+  openItem(id: string){
+    let config = new MdDialogConfig();
+    let dialogRef: any = this.dialog.open(DetailsComponent, config)
+    dialogRef.componentInstance.product_id = id
+  }
+
   ngOnInit() {
     console.log("oninit")
     this.checkStatus()
     console.log("this.user ", this.user)
     if(this.user){
       console.log("user exists, updating user")
-      
+
     }
-    
+
     this.updateProducts()
-   
+
 
   }
   vote(data){
@@ -70,17 +77,17 @@ export class SnackingdojoComponent implements OnInit {
       window.location.href = '/auth/github'
       // this.checkStatus()
     }
-    
+
   }
   updateProductVotes(product_id, value){
     let product: Product
     let inc: number
-    
+
     if(this.productsUserLikes.includes(product_id)){
       console.log("found product in productsUserLikes list", this.productsUserLikes)
         if(value){
           inc = -1
-          
+
         }else{
           inc = -2
           //add to dislikes array
@@ -96,12 +103,12 @@ export class SnackingdojoComponent implements OnInit {
 
           }
         })
-        
+
     }
     else if(this.productsUserDislikes.includes(product_id)){
       if(!value){
         inc = 1
-        
+
       }else{
         inc = 2
         //add to likes
@@ -112,7 +119,7 @@ export class SnackingdojoComponent implements OnInit {
             this.productsUserDislikes.splice(index, 1)
           }
         })
-      
+
 
     }
     else{
@@ -131,7 +138,7 @@ export class SnackingdojoComponent implements OnInit {
         console.log("incrementing product.votes: current = ", product.votes)
         product.votes +=inc
         console.log("after inc...", product.votes)
-        
+
       }
     })
     this.productList.sort((product1, product2)=>{
@@ -142,7 +149,7 @@ export class SnackingdojoComponent implements OnInit {
       }
     })
     console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    
+
   }
   updateUser(user_id){
     this.productsUserDislikes = []
@@ -152,7 +159,7 @@ export class SnackingdojoComponent implements OnInit {
       console.log("************************")
       if(user){this.user = user
       console.log(user)
-      
+
       user.likes.forEach((like)=>{
         if(like.value){
           this.productsUserLikes.push(like.product_id)
