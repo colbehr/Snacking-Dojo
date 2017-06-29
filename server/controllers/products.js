@@ -1,5 +1,6 @@
 let mongoose = require('mongoose')
 let Product = mongoose.model("Product")
+let User = mongoose.model("User")
 module.exports = {
   getAll: (request, response)=>{
     Product.find({}).sort("-votes").exec((error, products)=>{
@@ -8,6 +9,25 @@ module.exports = {
         response.status(500).json(error)
       }else{
         response.json(products)
+      }
+    })
+  },
+  getOne: (request, response)=>{
+    Product.findById(request.params.id).populate("comments._user").exec((err, product)=>{
+      if(err){
+        response.status(500).json("error finding product")
+      }else{
+        response.json(product)
+      }
+    })
+  },
+  addComment: (request, response)=>{
+    Product.findByIdAndUpdate(request.body.product_id, {$push: {comments: {comment: request.body.comment, _user: request.body.user_id}}}, (err, product)=>{
+      if(err){
+        console.log("err adding comment")
+        response.status(500).json(err)
+      }else{
+        response.json(product)
       }
     })
   },

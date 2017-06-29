@@ -14,7 +14,10 @@ let ProductSchema = mongoose.Schema({
   },
   category:{
     type: String
-  }
+  },
+  comments: [{
+    comment: String, _user: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
+  }]
 
 }, {timestamps: true})
 mongoose.model("Product", ProductSchema)
