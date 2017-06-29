@@ -28,9 +28,9 @@ export class DetailsComponent implements OnInit {
     })
   }
   submitComment(comment){
-    console.log(comment)
+    console.log("date: ", new Date())
     comment.createdAt = new Date()
-
+    console.log(comment)
 
     this._dbService.addComment(comment).then((something)=>{
       console.log(something)
@@ -61,11 +61,16 @@ export class DetailsComponent implements OnInit {
     })
     console.log("this.product", this.product)
   }
-
+  sortComments(){
+    this.product.comments.sort((a, b)=>{
+      return Number(b.createdAt>a.createdAt)
+    })
+  }
   getProduct(){
     this._dbService.getOneProduct(this.product_id).then((product)=>{
         console.log("got product")
         this.product = product
+        this.sortComments()
         this.commentData.product_id = product._id
         console.log(this.product)
       }).catch((err)=>{
