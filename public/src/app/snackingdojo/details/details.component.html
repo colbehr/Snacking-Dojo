@@ -12,12 +12,16 @@
     </div>
 
     <div class="comments">
-    <h5>Tell the Dojo what you think of these snacks</h5>
-    <form>
-    <textarea rows="4" cols="50"> 
-    </textarea> 
-    <input type="submit" name="submit" value="Snack Comment">   
-    </form>
+      <h5>Tell the Dojo what you think of these snacks</h5>
+      <form>
+        <textarea rows="4" cols="50"> 
+        </textarea> 
+        <input type="submit" name="submit" value="Snack Comment">   
+      </form>
+      <div class="comment" *ngFor="let comment of product.comments">
+        <img style="width: 50px" src="{{comment._user.img}}"><p style="display: inline">{{comment._user.username}}: </p>
+        <p>{{comment.comment}}</p>
+      </div>
     </div>
 </div>
 
