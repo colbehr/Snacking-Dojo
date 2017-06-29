@@ -1,3 +1,5 @@
+<h1 *ngIf="!githubUser">Login to comment</h1>
+<h1 *ngIf="githubUser">Hello {{githubUser.username}}</h1>
 <div class="productinfo" *ngIf="product">
   
     <div class="itemimg">
@@ -13,13 +15,13 @@
 
     <div class="comments">
       <h5>Tell the Dojo what you think of these snacks</h5>
-      <form>
-        <textarea rows="4" cols="50"> 
+      <form (submit)="submitComment(commentData)">
+        <textarea rows="4" cols="50" name="comment" [(ngModel)] = "commentData.comment"> 
         </textarea> 
-        <input type="submit" name="submit" value="Snack Comment">   
+        <button [disabled] = "!githubUser">Submit Comment</button>   
       </form>
       <div class="comment" *ngFor="let comment of product.comments">
-        <img style="width: 50px" src="{{comment._user.img}}"><p style="display: inline">{{comment._user.username}}: </p>
+        <img style="width: 50px" src="{{comment._user?.img}}"><p style="display: inline">{{comment._user?.username}}: </p>
         <p>{{comment.comment}}</p>
       </div>
     </div>

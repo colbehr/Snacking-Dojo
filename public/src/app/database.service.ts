@@ -33,6 +33,9 @@ export class DatabaseService {
   getOneProduct(product_id){
     return this._http.get("/products/"+product_id).map(data=>data.json()).toPromise()
   }
+  addComment(commentData){
+    return this._http.post("/products/comment", commentData).map(data=>data.json()).toPromise()
+  }
 
   //github
  
