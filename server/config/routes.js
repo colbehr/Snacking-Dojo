@@ -10,7 +10,8 @@ module.exports = (app)=>{
   app.post("/users/like", users.like)
   app.get("/users/checkstatus", users.checkStatus)
   app.get("/users/:id", users.getOne)
-  app.get("/users", users.getAll)
+  
+  // app.get("/users", users.getAll)
   
   
 
