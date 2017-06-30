@@ -15,9 +15,10 @@ export class AdminComponent implements OnInit {
   constructor(private _dbService: DatabaseService) { }
 
   ngOnInit() {
-    
+
     this.updateProducts()
-    
+    console.log(this.productList)
+
     }
     updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
