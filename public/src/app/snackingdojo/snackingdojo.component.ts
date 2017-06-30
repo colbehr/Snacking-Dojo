@@ -43,6 +43,8 @@ export class SnackingdojoComponent implements OnInit {
 
   openItem(id: string){
     let config = new MdDialogConfig();
+    // config.width = "80%";
+    config.panelClass = "modalPane"
     let dialogRef: any = this.dialog.open(DetailsComponent, config)
     dialogRef.componentInstance.product_id = id
     dialogRef.afterClosed().subscribe(()=>{
@@ -53,7 +55,7 @@ export class SnackingdojoComponent implements OnInit {
             console.log("pushing dummy comment", product.comments[0])
             product.comments.push(product.comments[0])
           }
-          
+
         }
       })}
     })
