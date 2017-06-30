@@ -13,14 +13,14 @@
   </div>
   <div class="right">
     <h3 style="text-align: center;margin-top:10px" *ngIf="!githubUser">Login to comment</h3>
-    <form (submit)="submitComment(commentData)" style="margin:20px 10px 10px 10px" *ngIf="githubUser">
+    <form (submit)="submitComment(commentData)" style="margin:20px 10px 10px 10px" *ngIf="githubUser" #formData = "ngForm">
       <div class="group">
         <input type="text" required name="comment" [(ngModel)]="commentData.comment">
         <span class="highlight"></span>
         <span class="bar"></span>
         <label>Comment</label>
       </div><br /><br />
-      <button >Submit Comment</button>
+      <button [disabled]="!formData.valid">Submit Comment</button>
     </form>
     <div class="comments">
       <div class="comment" *ngFor="let comment of product.comments">
