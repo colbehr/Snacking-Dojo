@@ -19,7 +19,7 @@
     <span class="fa fa-sign-out"></span>
     <p style="display:inline">Sign out</p>
   </a>
-  <img *ngIf="user.img" src="{{user.img}}" style="width: 50px;margin-left: 10px;border-radius:100px">
+  <a *ngIf="githubUser.profileUrl" href="{{githubUser.profileUrl}}"><img *ngIf="githubUser._json.avatar_url" src="{{githubUser._json.avatar_url}}" style="width: 50px;margin-left: 10px;border-radius:100px"></a>
 </md-toolbar>
 <md-toolbar *ngIf="!user">
   <img src="../assets/favicon.png" alt="" class="snackIcon">
@@ -56,7 +56,7 @@
         </div>
         <div class="halfWidthButton">
           <span>&nbsp;</span>
-          <i style="color: #4fab4f" class="fa fa-comment comment-icon" aria-hidden="true"><span>{{item.comments.length}}</span></i>
+          <i style="color: #4fab4f" class="fa fa-comment comment-icon" aria-hidden="true" (click)="openItem(item._id)"><span>{{item.comments.length}}</span></i>
         </div>
         <div class="halfWidthButton">
           <a (click)="vote({product_id: item._id, value: 0})"><i [ngClass]="{'down-voted': productsUserDislikes.includes(item._id)}" class="fa fa-arrow-circle-down" aria-hidden="true"></i></a>
