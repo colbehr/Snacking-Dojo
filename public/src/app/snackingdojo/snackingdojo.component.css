@@ -9,6 +9,31 @@
   /* Likely future */
 }
 
+
+.loaderIcon{
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #087f23;
+  border-radius: 50%;
+    /*margin:calc(45% - 100px) calc(50% - 100px);*/
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+.loaderFull{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 1000
+}
 #foodwrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,7 +51,12 @@
   /*text-align: center;*/
   /*margin: 0 auto*/
 }
-
+.snackIcon{
+  width: 55px;
+  margin-right: 10px;
+  top: -1px;
+  position: relative;
+}
 .card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -246,30 +276,6 @@ input:focus ~ .highlight {
   to 	{ width:0; background:transparent; }
 }
 
-
-.loaderIcon{
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #087f23;
-  border-radius: 50%;
-    /*margin:calc(45% - 100px) calc(50% - 100px);*/
-  width: 100px;
-  height: 100px;
-  animation: spin 2s linear infinite;
-}
-@keyframes spin {
-  0% {transform: rotate(0deg);}
-  100% {transform: rotate(360deg);}
-}
-.loaderFull{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  z-index: 1000
-}
 
 .mat-toolbar{
   background-color: #4fab4f;
