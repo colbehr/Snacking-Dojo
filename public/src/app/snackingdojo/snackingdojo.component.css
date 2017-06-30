@@ -287,3 +287,6 @@ input:focus ~ .highlight {
       top: -6px;
       
 }
+.comment-icon, .fa-arrow-circle-down, .fa-arrow-circle-up, img{
+  cursor: pointer;
+}
