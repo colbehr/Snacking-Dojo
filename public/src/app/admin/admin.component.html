@@ -1,14 +1,23 @@
+<md-toolbar>
+  <span>Welcome Admin</span>
+</md-toolbar>
 <table>
   <thead>
     <tr>
-      <th>Products</th>
+      <th>Id</th>
+      <th>Image</th>
+      <th>Product</th>
       <th>Votes</th>
       <th>Comments</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
+    <tr *ngFor = "let item of productList; let i = index">
+      <td *ngIf = "i < 10">{{i + 1}}</td>
+      <td *ngIf = "i < 10"><img src="{{item.img}}" alt=""></td>
+      <td *ngIf = "i < 10">{{item.name}}</td>
+      <td *ngIf = "i < 10">{{item.votes}}</td>
+      <td *ngIf = "i < 10">{{item.comments.length}}</td>
     </tr>
   </tbody>
 </table>
