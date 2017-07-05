@@ -13,11 +13,12 @@ import {GithubUser} from "./../github-user"
 export class AdminComponent implements OnInit {
   productList: Product[]
   shortList: Product[]
+  total = 0;
   user: User
   constructor(private _dbService: DatabaseService, private _router: Router ) { }
 
   ngOnInit() {
-    
+
     this._dbService.checkStatus().then((githubUser)=>{
 
       console.log("githubuser: ",githubUser)
@@ -42,7 +43,7 @@ export class AdminComponent implements OnInit {
 
     this.updateProducts()
     console.log(this.productList)
-    
+ 
   }
   reset(){
     console.log("reset function client side")
@@ -54,6 +55,14 @@ export class AdminComponent implements OnInit {
     this.productList = products
     this.shortList = products
     this.shortList.length = 10
+
+    this.shortList.forEach((product) => {
+      console.log(product.price)
+      console.log(parseFloat(product.price.replace(/[^0-9]/g,''))/100)
+      this.total += parseFloat(product.price.replace(/[^0-9]/g,''))/100  
+      
+    })
+
     })
   }
 }
