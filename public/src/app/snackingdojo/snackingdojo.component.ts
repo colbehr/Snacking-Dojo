@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from "./../user"
 import { Product } from "./../product"
 import { Like } from "./../like"
@@ -12,13 +12,16 @@ import { DetailsComponent } from "./details/details.component"
   selector: 'app-snackingdojo',
   templateUrl: './snackingdojo.component.html',
   styleUrls: ['./snackingdojo.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class SnackingdojoComponent implements OnInit {
+  categories = ["Candy & Chocolate","Chips & Pretzels","Cookies & Cakes","Crackers","Energy & Granola Bars","Nuts, Seeds & Dried Fruit","Popcorn & Jerky","Trail Mix & Snack Mix"]
   productList: Product[]
   user: User
   githubUser: GithubUser = new GithubUser
   user_id = ""
   search = ""
+  CategorySearch = ""
   productsUserLikes = []
   productsUserDislikes = []
   constructor(private _dbService: DatabaseService, public dialog : MdDialog) { }
@@ -40,6 +43,22 @@ export class SnackingdojoComponent implements OnInit {
     }).catch((error)=>{
     })
   }
+
+  CategorySetter(category){
+    console.log(category);
+    console.log(this.CategorySearch)
+    if(this.CategorySearch == category)
+    {
+      this.CategorySearch = "";
+    }
+    else
+    {
+    this.CategorySearch = category;
+    }
+    
+
+  }
+
 
   openItem(id: string){
     let config = new MdDialogConfig();
@@ -163,7 +182,7 @@ export class SnackingdojoComponent implements OnInit {
         return product1.name.localeCompare(product2.name)
       }
     })
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
 
   }
   updateUser(user_id){

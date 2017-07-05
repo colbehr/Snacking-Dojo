@@ -3,8 +3,13 @@
 </div>
 
 <md-toolbar *ngIf="user">
+  <i style="margin:10px"><span class="fa fa-bars" (click)="sidenav.toggle()"></span></i>
+  
   <img src="../assets/favicon.png" alt="" class="snackIcon">
   <span>Welcome,  {{user?.username}}</span>
+  <!--<button md-mini-fab class="example-fab" >
+    <md-icon>add</md-icon>
+  </button>-->
   <span class="spacer"></span>
   <div class="searchbar">
     <div class="group">
@@ -21,10 +26,17 @@
   </a>
   <a *ngIf="githubUser.profileUrl" href="{{githubUser.profileUrl}}"><img *ngIf="githubUser._json.avatar_url" src="{{githubUser._json.avatar_url}}" style="width: 50px;margin-left: 10px;border-radius:100px"></a>
 </md-toolbar>
+
 <md-toolbar *ngIf="!user">
+  <i style="margin:10px"><span class="fa fa-bars" (click)="sidenav.toggle()"></span></i>
+  
   <img src="../assets/favicon.png" alt="" class="snackIcon">
   <span>Login to vote</span>
   <span class="spacer"></span>
+  <!--<button md-mini-fab class="example-fab" (click)="sidenav.toggle()">
+    <md-icon>add</md-icon>
+  </button>-->
+  
   <div class="searchbar">
     <div class="group">
       <input type="text" required name="search" [(ngModel)]="search">
@@ -39,8 +51,27 @@
     <p style="display:inline">&nbsp;Sign in</p>
   </a>
 </md-toolbar>
+
+
+
+
+<md-sidenav-container class="example-sidenav-fab-container">
+  <md-sidenav #sidenav mode="side" opened="true">
+    <div class="example-scrolling-content">
+        <div class="category" *ngFor = "let category of categories" [ngClass] = "{'selected': category == CategorySearch}" (click) = "CategorySetter(category)">
+        <p>{{category}}</p>
+        <hr>
+        </div>
+    </div>
+  </md-sidenav>
+
+
+
+
+
+
 <div id="foodwrapper">
-  <md-card class="example-card" *ngFor="let item of productList | search: search">
+  <md-card class="example-card" *ngFor="let item of productList | search: search:CategorySearch">
     <md-card-header>
       <div md-card-avatar class="example-header-image">
         <p>{{item.votes}}</p>
@@ -48,7 +79,7 @@
       <md-card-title>{{item.name | truncate: 35}}</md-card-title>
     </md-card-header>
     <img md-card-image src="{{item.img}}" (click)="openItem(item._id)">
-    <md-card-subtitle *ngIf="item.category">Category</md-card-subtitle>
+    <md-card-subtitle *ngIf="item.category">{{item.category}}</md-card-subtitle>
     <md-card-actions>
       <div class="VoteButtons">
         <div class="halfWidthButton">
@@ -64,8 +95,25 @@
       </div>
     </md-card-actions>
   </md-card>
-</div>
-
-<div style="color: black; font-family: sans-serif; text-align: center; width: 100%">
+  <div style="color: black; font-family: sans-serif; text-align: center; width: 100%">
   <span>© 2017 SnackingDojo · All Rights Reserved</span>
 </div>
+
+</div>
+
+
+
+
+
+  <!--<div class="example-scrolling-content">
+    Lorem ipsum dolor sit amet, pede a libero aenean phasellus, lectus metus sint ut risus, fusce
+    vel in pellentesque. Nisl rutrum etiam morbi consectetuer tempor magna, aenean nullam nunc id,
+    neque vivamus interdum sociis nulla scelerisque sem, dolor id wisi turpis magna aliquam magna.
+    Risus accumsan hac eget etiam donec sed, senectus erat mattis quam, tempor vel urna occaecat
+    cras, metus urna augue nec at. Et morbi amet dui praesent, nec eu at, ligula ipsum dui
+    sollicitudin, quis nisl massa viverra ligula, mauris fermentum orci arcu enim fringilla. Arcu
+    erat nulla in aenean lacinia ullamcorper, urna ante nam et sagittis, tristique vehicula nibh
+    ipsum vivamus, proin proin. Porta commodo nibh quis libero amet. Taciti dui, sapien
+    consectetuer.
+  </div>-->
+</md-sidenav-container>
