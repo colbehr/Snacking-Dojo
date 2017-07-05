@@ -11,11 +11,12 @@ module.exports = (app)=>{
   app.get("/users/checkstatus", users.checkStatus)
   app.get("/users/:id", users.getOne)
   
-  // app.get("/users", users.getAll)
+  app.get("/users", users.getAll)
   
   
 
   //products
+  app.get("/products/reset", products.reset)
   app.post("/products/create", products.create)
   app.post("/products/addMany", products.createMany)
   app.post("/products/comment", products.addComment)

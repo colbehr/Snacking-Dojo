@@ -24,6 +24,10 @@ export class DatabaseService {
   }
 
   //products
+  reset(){
+    console.log("reset dbService side")
+    return this._http.get("/products/reset").toPromise()
+  }
   createProduct(product){
     return this._http.post("/products/create", product).toPromise()
   }

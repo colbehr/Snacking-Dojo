@@ -12,38 +12,48 @@ import {GithubUser} from "./../github-user"
 })
 export class AdminComponent implements OnInit {
   productList: Product[]
+  shortList: Product[]
   user: User
   constructor(private _dbService: DatabaseService, private _router: Router ) { }
 
   ngOnInit() {
+    
     this._dbService.checkStatus().then((githubUser)=>{
-
-
+      console.log("WEFWEFWEFWEFWEFWEFWEFWEFWEFWEFWEFWEFWE")
+      console.log("githubuser: ",githubUser)
       if(githubUser){
-        console.log(githubUser)
-        this._dbService.getOneUser({github_id: githubUser.id}).then((user)=>{
+
+        this._dbService.getOneUser(githubUser.id).then((user)=>{
           this.user = user
+          console.log("user from db", user)
           if(user.isAdmin){
             console.log("welcome admin")
           }else{
             this._router.navigate(["/"])
           }
         }).catch((err)=>{
-
+          
           console.log(err)})
       }
     }).catch((error)=>{
+      this._router.navigate(["/"])
       console.log(error)
     })
 
     this.updateProducts()
     console.log(this.productList)
     
-    }
+  }
+  reset(){
+    console.log("reset function client side")
+    this._dbService.reset().then(()=>{console.log("reset items!")}).catch((err)=>{console.log(err)})
+    
+  }
     updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
     this.productList = products
-    this.productList.length = 10
+    this.shortList = products
+    this.shortList.length = 10
     })
   }
 }
