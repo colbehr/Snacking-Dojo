@@ -43,6 +43,7 @@ export class AdminComponent implements OnInit {
     updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
     this.productList = products
+    this.productList.length = 10
     })
   }
 }

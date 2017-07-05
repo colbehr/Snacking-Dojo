@@ -12,12 +12,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor = "let i = 0; i< 10; i++">
-      <td >{{i + 1}}</td>
-      <td ><img src="{{productList[i].img}}" alt=""></td>
-      <td >{{productList[i].name}}</td>
-      <td >{{productList[i].votes}}</td>
-      <td >{{productList[i].comments.length}}</td>
+    <tr *ngFor = "let item of productList; let i = index">
+      <td *ngIf = >{{i + 1}}</td>
+      <td *ngIf = ><img src="{{item.img}}" alt=""></td>
+      <td *ngIf = >{{item.name}}</td>
+      <td *ngIf = >{{item.votes}}</td>
+      <td *ngIf = >{{item.comments.length}}</td>
     </tr>
   </tbody>
 </table>
