@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit {
         if(user.isAdmin){
           console.log("hello admin")
         }else{
-        this._router.navigate(["/"])
+        console.log("not admin")
       }
       }).catch((err)=>{
         this._router.navigate(["/"])
