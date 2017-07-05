@@ -10,7 +10,7 @@ import { SnackingdojoComponent } from './snackingdojo/snackingdojo.component';
 import { DetailsComponent } from './snackingdojo/details/details.component';
 import { SearchPipe } from './search.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdDialogModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialog, MdButton } from '@angular/material';
+import { MdSidenavModule, MdDialogModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MdDialog, MdButton } from '@angular/material';
 import { TruncatePipe } from './truncate.pipe';
 import { AdminComponent } from './admin/admin.component';
 
@@ -34,7 +34,8 @@ import { AdminComponent } from './admin/admin.component';
     MdDialogModule,
     MdMenuModule,
     MdToolbarModule,
-    MdIconModule
+    MdIconModule,
+    MdSidenavModule
 
   ],
   providers: [DatabaseService,MdDialog],

@@ -97,7 +97,7 @@ a {
 }
 
 .example-header-image {
-  background-color: #80e27e;
+  background-color: white;
   background-size: cover;
   margin-right: 10px;
 }
@@ -111,9 +111,10 @@ md-card-header{
 
 .example-header-image p {
   position: relative;
-  top: -5px;
+  top: -20px;
   text-align: center;
-  color: white;
+  font-size: 25px;
+  color: #5d5d5d;
 }
 
 .example-card img {
@@ -295,4 +296,71 @@ input:focus ~ .highlight {
 }
 .comment-icon, .fa-arrow-circle-down, .fa-arrow-circle-up, img{
   cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+/*.example-sidenav-fab-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}*/
+
+.example-sidenav-fab-container md-sidenav {
+  max-width: 400px;
+}
+
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container md-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+.example-scrolling-content {
+  overflow: auto;
+}
+
+/*.example-fab {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}*/
+
+.category hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    width: 90%;
+}
+
+.category {
+    color: #aaa;
+    font-size: 15px;
+    font-family: sans-serif;
+    list-style-type: none;
+
+}
+
+.category p {
+  padding: 15px;
+  margin: 0px;
+}
+
+
+
+.category:hover {
+    background-color: #eee;
+}
+
+.selected {
+  background-color: #eee;
 }
