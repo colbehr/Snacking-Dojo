@@ -19,13 +19,15 @@ export class AdminComponent implements OnInit {
       if(user.isAdmin){
         console.log("welcome admin...")
       }else{
-
+        this._router.navigate(["/"])
       }
+    }).catch((error)=>{
+      console.log(error)
     })
 
     this.updateProducts()
     console.log(this.productList)
-    this._router.navigate(["/"])
+    
     }
     updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
