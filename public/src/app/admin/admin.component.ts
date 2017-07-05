@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     
     this._dbService.checkStatus().then((githubUser)=>{
-      console.log("WEFWEFWEFWEFWEFWEFWEFWEFWEFWEFWEFWEFWE")
+
       console.log("githubuser: ",githubUser)
       if(githubUser){
 

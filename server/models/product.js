@@ -15,6 +15,9 @@ let ProductSchema = mongoose.Schema({
   category:{
     type: String
   },
+  price:{
+    type: String
+  }
   comments: [{
     comment: String, _user: {type: mongoose.Schema.Types.ObjectId, ref: "User"}, createdAt: {type: Date}
   }, ]
