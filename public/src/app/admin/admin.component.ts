@@ -16,18 +16,9 @@ export class AdminComponent implements OnInit {
   constructor(private _dbService: DatabaseService, private _router: Router ) { }
 
   ngOnInit() {
-    this._dbService.checkStatus().then((githubUser: GithubUser)=>{
+    this._dbService.checkStatus().then((githubUser)=>{
 
-      this._dbService.getOneUser({user_id: githubUser.id}).then((user: User)=>{
-        if(user.isAdmin){
-          console.log("hello admin")
-        }else{
-        console.log("not admin")
-      }
-      }).catch((err)=>{
-        this._router.navigate(["/"])
-      })
-      
+      console.log(githubUser)
     }).catch((error)=>{
       console.log(error)
     })
