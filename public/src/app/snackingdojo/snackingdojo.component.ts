@@ -163,7 +163,7 @@ export class SnackingdojoComponent implements OnInit {
         return product1.name.localeCompare(product2.name)
       }
     })
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
 
   }
   updateUser(user_id){
