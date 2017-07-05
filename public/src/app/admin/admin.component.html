@@ -1,5 +1,6 @@
 <md-toolbar>
   <span>Welcome Admin</span>
+  <span>Balance: {{total | currency: "USD": true: '1.2-2'}}</span>
 </md-toolbar>
 
 <a href="/"><button (click)="reset()">Reset Votes</button></a>
