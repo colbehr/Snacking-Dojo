@@ -137,7 +137,8 @@ module.exports = {
     }else{
       response.status(401).json("not authenticated")
     }
-  }
+  },
+  
 
 
 }

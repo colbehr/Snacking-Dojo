@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from "./../database.service"
 import { Product } from "./../product"
-
-
+import {User} from "./../user"
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-admin',
@@ -12,13 +12,20 @@ import { Product } from "./../product"
 export class AdminComponent implements OnInit {
   productList: Product[]
 
-  constructor(private _dbService: DatabaseService) { }
+  constructor(private _dbService: DatabaseService, private _router: Router ) { }
 
   ngOnInit() {
+    this._dbService.checkStatus().then((user:User)=>{
+      if(user.isAdmin){
+        console.log("welcome admin...")
+      }else{
+
+      }
+    })
 
     this.updateProducts()
     console.log(this.productList)
-
+    this._router.navigate(["/"])
     }
     updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
