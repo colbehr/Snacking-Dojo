@@ -20,7 +20,7 @@
   <tbody>
     <tr *ngFor = "let item of shortList; let i = index">
       <td>{{i + 1}}</td>
-      <td><a href="https://www.instacart.com/store/items/item_{{item._id}}"><img src="{{item.img}}" alt=""></a></td>
+      <td><a href="https://www.instacart.com/store/items/item_{{item.productID}}"><img src="{{item.img}}" alt=""></a></td>
       <td>{{item.name}}</td>
       <td>{{item.category}}</td>
       <td>{{item.price}}</td>
