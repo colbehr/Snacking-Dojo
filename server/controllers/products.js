@@ -87,17 +87,18 @@ module.exports = {
         if(!product){
           let newProduct = new Product(product)
           newProduct.save().then((product)=>{
-            console.log("saved, returning product as json")
-            response.json(product)
+            console.log("saved")
+
           }).catch((error)=>{
             console.log("error in products.js create", error)
-            response.status(500).json(false)
+            
           })
         }
       })
 
       
     }
+    response.json("it worked maybe?")
   }
 
 
