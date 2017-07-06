@@ -1,6 +1,13 @@
 let mongoose = require('mongoose')
 
 let ProductSchema = mongoose.Schema({
+  _id: {
+    type:String,
+    required: true
+  },
+  subcategory: {
+    type: String
+  },
   name: {
     type: String, 
     required: [true, "Product Name is required"],
