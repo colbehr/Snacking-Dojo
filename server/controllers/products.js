@@ -84,7 +84,7 @@ module.exports = {
     //array of product objects
     for (let product of request.body){
 
-      Product.findById(request.body._id, (err, dbProduct)=>{
+      Product.findById(product._id, (err, dbProduct)=>{
         console.log("product.name:", product.name)
         if(err){
           console.log("error finding product", err)
