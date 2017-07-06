@@ -86,7 +86,10 @@ module.exports = {
 
       Product.findById(request.body._id, (err, dbProduct)=>{
         console.log("product.name:", product.name)
-        if(!dbProduct){
+        if(err){
+          console.log("error finding product", err)
+        }else{
+          if(!dbProduct){
           console.log(" inside !dbProduct")
           let newProduct = new Product(product)
           console.log("about to save product:", product)
@@ -97,7 +100,7 @@ module.exports = {
             console.log("error in products.js create", error)
 
           })
-        }
+        }}
       })
 
       
