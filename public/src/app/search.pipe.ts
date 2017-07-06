@@ -12,7 +12,7 @@ export class SearchPipe implements PipeTransform {
     for(let product of products){
       if(CategorySeach)
       {
-           if(product.category.toLowerCase().includes(CategorySeach.toLowerCase()))
+           if(product.subcategory.toLowerCase().includes(CategorySeach.toLowerCase()))
            {
               filtered.push(product)
            }
@@ -29,7 +29,7 @@ export class SearchPipe implements PipeTransform {
       //     }
       // }
       filtered = filtered.filter((item)=>{
-          return item.name.toLowerCase().includes(search)
+          return item.name.toLowerCase().includes(search.toLowerCase())
       })
     }
     return filtered
