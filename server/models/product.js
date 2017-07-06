@@ -1,9 +1,7 @@
 let mongoose = require('mongoose')
 
 let ProductSchema = mongoose.Schema({
-  _id: {
-    type:String
-  },
+  productID: String,
   subcategory: {
     type: String
   },

@@ -41,6 +41,7 @@ module.exports = {
                   }
                 }
                 user.save().then((result)=>{
+                 
                 Product.findByIdAndUpdate(request.body.product_id, {$inc: {votes: incVal}}, (err, res)=>{
                 if(err){
                   console.log("error saving", err)
