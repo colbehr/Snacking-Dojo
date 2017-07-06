@@ -15,7 +15,7 @@ import { DetailsComponent } from "./details/details.component"
   encapsulation: ViewEncapsulation.None,
 })
 export class SnackingdojoComponent implements OnInit {
-  categories = ["Candy & Chocolate","Chips & Pretzels","Cookies & Cakes","Crackers","Energy & Granola Bars","Nuts, Seeds & Dried Fruit","Popcorn & Jerky","Trail Mix & Snack Mix"]
+  categories = []
   productList: Product[]
   user: User
   githubUser: GithubUser = new GithubUser
@@ -212,6 +212,11 @@ export class SnackingdojoComponent implements OnInit {
   updateProducts(){
     this._dbService.getAllProducts().then((products)=>{
       this.productList = products
+      this.productList.forEach((product:Product)=>{
+        if(!this.categories.includes(product.subcategory)){
+          this.categories.push(product.subcategory)
+        }
+      })
     })
   }
 }

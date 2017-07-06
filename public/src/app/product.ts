@@ -4,6 +4,7 @@ export class Product {
   img: string
   votes: number
   price: string
+  subcategory: string
   category: string
   comments: [{comment: string, _user: {_id: string, username: string}, createdAt: Date}]
 }
