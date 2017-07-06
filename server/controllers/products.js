@@ -89,7 +89,10 @@ module.exports = {
         if(err){
           console.log("error finding product", err)
         }else{
+          console.log("*********************************")
+          console.log("dbProduct: ", dbProduct)
           if(!dbProduct){
+           
           console.log(" inside !dbProduct")
           let newProduct = new Product(product)
           console.log("about to save product:", product)
