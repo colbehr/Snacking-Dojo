@@ -83,8 +83,9 @@ module.exports = {
   createMany: (request, response)=>{
     //array of product objects
     for (let product of request.body){
-      Product.findById(request.body._id, (err, product)=>{
-        if(!product){
+      console.log(product)
+      Product.findById(request.body._id, (err, dbProduct)=>{
+        if(!dbProduct){
           let newProduct = new Product(product)
           newProduct.save().then((product)=>{
             console.log("saved")

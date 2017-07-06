@@ -2,8 +2,7 @@ let mongoose = require('mongoose')
 
 let ProductSchema = mongoose.Schema({
   _id: {
-    type:mongoose.Schema.Types.ObjectId,
-
+    type:String
   },
   subcategory: {
     type: String
